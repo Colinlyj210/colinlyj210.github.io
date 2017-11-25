@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="运维 nginx lua," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="https://www.lyj210.cn/tags/index.html">
+<meta name="description" content="NGINX安装LUA（基于LNMP）：1.下载安装LuaJIT 2.1：http://luajit.org/download.html 12345wget http://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gztar zxf LuaJIT-2.1.0-beta3.tar">
+<meta name="keywords" content="运维 nginx lua">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx安装Lua模块">
+<meta property="og:url" content="https://www.lyj210.cn/2017/11/25/Nginx安装Lua模块/index.html">
 <meta property="og:site_name" content="LYJ&#39;S NOTES">
+<meta property="og:description" content="NGINX安装LUA（基于LNMP）：1.下载安装LuaJIT 2.1：http://luajit.org/download.html 12345wget http://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gztar zxf LuaJIT-2.1.0-beta3.tar.gzcd LuaJIT-2.1.0-beta3make PREFIX=/usr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-24T14:54:33.341Z">
+<meta property="og:updated_time" content="2017-11-25T05:17:19.139Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
+<meta name="twitter:title" content="Nginx安装Lua模块">
+<meta name="twitter:description" content="NGINX安装LUA（基于LNMP）：1.下载安装LuaJIT 2.1：http://luajit.org/download.html 12345wget http://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gztar zxf LuaJIT-2.1.0-beta3.tar.gzcd LuaJIT-2.1.0-beta3make PREFIX=/usr">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.lyj210.cn/tags/"/>
+  <link rel="canonical" href="https://www.lyj210.cn/2017/11/25/Nginx安装Lua模块/"/>
 
 
 
 
 
-  <title>标签 | LYJ'S NOTES</title>
+  <title>Nginx安装Lua模块 | LYJ'S NOTES</title>
   
 
 
@@ -247,40 +251,176 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2017/11/25/Nginx安装Lua模块/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LYJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LYJ'S NOTES">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline">标签</h2>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 3 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/lnmp/" style="font-size: 12px; color: #ccc">lnmp</a> <a href="/tags/运维-lnmp/" style="font-size: 12px; color: #ccc">运维 lnmp</a> <a href="/tags/运维-nginx-lua/" style="font-size: 12px; color: #ccc">运维 nginx lua</a>
-            </div>
-          </div>
+          <h2 class="post-title" itemprop="name headline">Nginx安装Lua模块</h2>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-25T13:15:22+08:00">
+                2017-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="NGINX安装LUA（基于LNMP）："><a href="#NGINX安装LUA（基于LNMP）：" class="headerlink" title="NGINX安装LUA（基于LNMP）："></a>NGINX安装LUA（基于LNMP）：</h3><p>1.下载安装LuaJIT 2.1：<a href="http://luajit.org/download.html" target="_blank" rel="noopener">http://luajit.org/download.html</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gz</span><br><span class="line">tar zxf LuaJIT-2.1.0-beta3.tar.gz</span><br><span class="line"><span class="built_in">cd</span> LuaJIT-2.1.0-beta3</span><br><span class="line">make PREFIX=/usr/<span class="built_in">local</span>/luajit</span><br><span class="line">make install PREFIX=/usr/<span class="built_in">local</span>/luajit</span><br></pre></td></tr></table></figure>
+<p>2.下载最新的ngx_devel_kit（NDK）模块：<a href="https://github.com/simpl/ngx_devel_kit/tags" target="_blank" rel="noopener">https://github.com/simpl/ngx_devel_kit/tags</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.tar.gz</span><br><span class="line">tar -xzvf v0.3.0.tar.gz</span><br></pre></td></tr></table></figure>
+<p>3.下载最新的lua-nginx-module 模块：<a href="https://github.com/openresty/lua-nginx-module/tags" target="_blank" rel="noopener">https://github.com/openresty/lua-nginx-module/tags</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/openresty/lua-nginx-module/archive/v0.10.11.tar.gz</span><br><span class="line">tar -xzvf v0.10.11.tar.gz</span><br></pre></td></tr></table></figure>
+<p>然后执行以下命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tell nginx's build system where to find LuaJIT 2.1:</span></span><br><span class="line"><span class="built_in">export</span> LUAJIT_LIB=/usr/<span class="built_in">local</span>/luajit/lib</span><br><span class="line"><span class="built_in">export</span> LUAJIT_INC=/usr/<span class="built_in">local</span>/luajit/include/luajit-2.1</span><br></pre></td></tr></table></figure>
+<p>接下来我们就要开始升级nginx版本了，在升级nginx版本之前，想进入lnmp的解压包，我们要在lnmp一键包目录下的lnmp.conf文件里的Nginx_Modules_Options加上编译参数：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Nginx_Modules_Options=<span class="string">'--with-ld-opt=-Wl,-rpath,/usr/local/luajit/lib --add-module=/root/lua-nginx-module-0.10.11 --add-module=/root/ngx_devel_kit-0.3.0'</span></span><br></pre></td></tr></table></figure>
+<p>加上以上这段参数之后，我们就使用lnmp一键包中的./upgrade.sh nginx升级脚本升级一遍nginx即可完成lua扩展的安装。等重新编译完，nginx中就能使用lua扩展了。</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/运维-nginx-lua/" rel="tag"># 运维 nginx lua</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/25/阿里云服务器搭建LNMP/" rel="next" title="阿里云服务器搭建LNMP">
+                <i class="fa fa-chevron-left"></i> 阿里云服务器搭建LNMP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -289,6 +429,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -309,8 +453,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -434,6 +587,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#NGINX安装LUA（基于LNMP）："><span class="nav-number">1.</span> <span class="nav-text">NGINX安装LUA（基于LNMP）：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

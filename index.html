@@ -259,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2017/11/25/阿里云服务器搭建LNMP/">
+    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2017/11/25/Nginx安装Lua模块/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LYJ">
@@ -278,7 +278,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/25/阿里云服务器搭建LNMP/" itemprop="url">阿里云服务器搭建LNMP</a></h2>
+                <a class="post-title-link" href="/2017/11/25/Nginx安装Lua模块/" itemprop="url">Nginx安装Lua模块</a></h2>
         
 
         <div class="post-meta">
@@ -290,7 +290,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-25T12:50:24+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-25T13:15:22+08:00">
                 2017-11-25
               </time>
             
@@ -352,10 +352,17 @@
       
         
           
-            <h4 id="LNMP的安装"><a href="#LNMP的安装" class="headerlink" title="LNMP的安装"></a>LNMP的安装</h4><p>安装教程： <a href="https://lnmp.org/install.html" target="_blank" rel="noopener">https://lnmp.org/install.html</a></p>
-<p>添加删除虚拟主机：<a href="https://lnmp.org/faq/lnmp-vhost-add-howto.html" target="_blank" rel="noopener">https://lnmp.org/faq/lnmp-vhost-add-howto.html</a></p>
-<p>LNMP命令：<a href="https://lnmp.org/faq/lnmp-status-manager.html" target="_blank" rel="noopener">https://lnmp.org/faq/lnmp-status-manager.html</a></p>
-<p>安装PHP扩展：<a href="https://lnmp.org/faq/addons.html" target="_blank" rel="noopener">https://lnmp.org/faq/addons.html</a></p>
+            <h3 id="NGINX安装LUA（基于LNMP）："><a href="#NGINX安装LUA（基于LNMP）：" class="headerlink" title="NGINX安装LUA（基于LNMP）："></a>NGINX安装LUA（基于LNMP）：</h3><p>1.下载安装LuaJIT 2.1：<a href="http://luajit.org/download.html" target="_blank" rel="noopener">http://luajit.org/download.html</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gz</span><br><span class="line">tar zxf LuaJIT-2.1.0-beta3.tar.gz</span><br><span class="line"><span class="built_in">cd</span> LuaJIT-2.1.0-beta3</span><br><span class="line">make PREFIX=/usr/<span class="built_in">local</span>/luajit</span><br><span class="line">make install PREFIX=/usr/<span class="built_in">local</span>/luajit</span><br></pre></td></tr></table></figure>
+<p>2.下载最新的ngx_devel_kit（NDK）模块：<a href="https://github.com/simpl/ngx_devel_kit/tags" target="_blank" rel="noopener">https://github.com/simpl/ngx_devel_kit/tags</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.tar.gz</span><br><span class="line">tar -xzvf v0.3.0.tar.gz</span><br></pre></td></tr></table></figure>
+<p>3.下载最新的lua-nginx-module 模块：<a href="https://github.com/openresty/lua-nginx-module/tags" target="_blank" rel="noopener">https://github.com/openresty/lua-nginx-module/tags</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/openresty/lua-nginx-module/archive/v0.10.11.tar.gz</span><br><span class="line">tar -xzvf v0.10.11.tar.gz</span><br></pre></td></tr></table></figure>
+<p>然后执行以下命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tell nginx's build system where to find LuaJIT 2.1:</span></span><br><span class="line"><span class="built_in">export</span> LUAJIT_LIB=/usr/<span class="built_in">local</span>/luajit/lib</span><br><span class="line"><span class="built_in">export</span> LUAJIT_INC=/usr/<span class="built_in">local</span>/luajit/include/luajit-2.1</span><br></pre></td></tr></table></figure>
+<p>接下来我们就要开始升级nginx版本了，在升级nginx版本之前，想进入lnmp的解压包，我们要在lnmp一键包目录下的lnmp.conf文件里的Nginx_Modules_Options加上编译参数：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Nginx_Modules_Options=<span class="string">'--with-ld-opt=-Wl,-rpath,/usr/local/luajit/lib --add-module=/root/lua-nginx-module-0.10.11 --add-module=/root/ngx_devel_kit-0.3.0'</span></span><br></pre></td></tr></table></figure>
+<p>加上以上这段参数之后，我们就使用lnmp一键包中的./upgrade.sh nginx升级脚本升级一遍nginx即可完成lua扩展的安装。等重新编译完，nginx中就能使用lua扩展了。</p>
 
           
         
@@ -395,7 +402,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -441,7 +448,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -463,7 +470,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
