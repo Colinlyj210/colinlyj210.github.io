@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="运维 nginx lua," />
+  <meta name="keywords" content="nginx,运维,lua," />
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="NGINX安装LUA（基于LNMP）：1.下载安装LuaJIT 2.1：http://luajit.org/download.html 12345wget http://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gztar zxf LuaJIT-2.1.0-beta3.tar">
-<meta name="keywords" content="运维 nginx lua">
+<meta name="keywords" content="nginx,运维,lua">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx安装Lua模块">
 <meta property="og:url" content="https://www.lyj210.cn/2017/11/25/Nginx安装Lua模块/index.html">
-<meta property="og:site_name" content="LYJ&#39;S NOTES">
+<meta property="og:site_name" content="LYJ&#39;s NOTES">
 <meta property="og:description" content="NGINX安装LUA（基于LNMP）：1.下载安装LuaJIT 2.1：http://luajit.org/download.html 12345wget http://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gztar zxf LuaJIT-2.1.0-beta3.tar.gzcd LuaJIT-2.1.0-beta3make PREFIX=/usr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-25T05:18:58.278Z">
+<meta property="og:updated_time" content="2017-11-25T07:16:43.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx安装Lua模块">
 <meta name="twitter:description" content="NGINX安装LUA（基于LNMP）：1.下载安装LuaJIT 2.1：http://luajit.org/download.html 12345wget http://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gztar zxf LuaJIT-2.1.0-beta3.tar.gzcd LuaJIT-2.1.0-beta3make PREFIX=/usr">
@@ -100,7 +100,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -126,7 +126,7 @@
 
 
 
-  <title>Nginx安装Lua模块 | LYJ'S NOTES</title>
+  <title>Nginx安装Lua模块 | LYJ's NOTES</title>
   
 
 
@@ -156,7 +156,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">LYJ'S NOTES</span>
+        <span class="site-title">LYJ's NOTES</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -272,7 +272,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LYJ'S NOTES">
+      <meta itemprop="name" content="LYJ's NOTES">
     </span>
 
     
@@ -380,7 +380,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/运维-nginx-lua/" rel="tag"># 运维 nginx lua</a>
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
+          
+            <a href="/tags/运维/" rel="tag"># 运维</a>
+          
+            <a href="/tags/lua/" rel="tag"># lua</a>
           
         </div>
       
@@ -471,6 +475,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="LYJ" />
+            
               <p class="site-author-name" itemprop="name">LYJ</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
@@ -504,7 +512,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -518,63 +526,15 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/Colinlyj210" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                  <a href="mailto:blq.lyj@gmail.com" target="_blank" title="E-Mail">
                     
                       <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://plus.google.com/yourname" target="_blank" title="Google">
-                    
-                      <i class="fa fa-fw fa-google"></i>Google</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
-                    
-                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://www.facebook.com/yourname" target="_blank" title="FB Page">
-                    
-                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://vk.com/yourname" target="_blank" title="VK Group">
-                    
-                      <i class="fa fa-fw fa-vk"></i>VK Group</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://stackoverflow.com/yourname" target="_blank" title="StackOverflow">
-                    
-                      <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://youtube.com/yourname" target="_blank" title="YouTube">
-                    
-                      <i class="fa fa-fw fa-youtube"></i>YouTube</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://instagram.com/yourname" target="_blank" title="Instagram">
-                    
-                      <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="skype:yourname?call|chat" target="_blank" title="Skype">
-                    
-                      <i class="fa fa-fw fa-skype"></i>Skype</a>
                 </span>
               
             
@@ -686,6 +646,8 @@
   
 
 
+  
+
 
 
 
@@ -724,6 +686,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
