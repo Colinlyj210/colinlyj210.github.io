@@ -259,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2017/11/25/项目接口规范/">
+    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2017/12/01/MySql的Int/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LYJ">
@@ -278,7 +278,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/25/项目接口规范/" itemprop="url">项目接口规范</a></h2>
+                <a class="post-title-link" href="/2017/12/01/MySql的Int/" itemprop="url">MySql的Int</a></h2>
         
 
         <div class="post-meta">
@@ -290,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-25T14:40:47+08:00">
-                2017-11-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T19:34:48+08:00">
+                2017-12-01
               </time>
             
 
@@ -313,8 +313,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
                   </a>
                 </span>
 
@@ -352,12 +352,60 @@
       
         
           
-            <h2 id="参数传递方式："><a href="#参数传递方式：" class="headerlink" title="参数传递方式："></a>参数传递方式：</h2><p>所有参数key、value键值对，转json然后base64(urlencode(json))转码，传递给接口。</p>
-<p>PHP接口端使用 file_get_contents(‘php://input’) 接收后解码</p>
-<h5 id="PHP接收端"><a href="#PHP接收端" class="headerlink" title="PHP接收端"></a>PHP接收端</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$data=file_get_contents(<span class="string">'php://input'</span>);</span><br><span class="line">$data=json_decode(urldecode(base64_decode($data)),<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="PHP发送端"><a href="#PHP发送端" class="headerlink" title="PHP发送端"></a>PHP发送端</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curl_post</span><span class="params">($curlHttp, $postdata, $isJson = true)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $ch = curl_init(); <span class="comment">//用curl发送数据给api</span></span><br><span class="line">    curl_setopt($ch, CURLOPT_POST, <span class="keyword">true</span>);</span><br><span class="line">    curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);</span><br><span class="line">    curl_setopt($ch, CURLOPT_URL, $curlHttp);</span><br><span class="line">    curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);</span><br><span class="line">    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, <span class="keyword">FALSE</span>);</span><br><span class="line">    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, <span class="keyword">FALSE</span>);</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">empty</span>($isJson)) &#123;</span><br><span class="line">        curl_setopt($ch, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">"Content-type: application/json;charset=UTF-8"</span>, <span class="string">"Accept: application/json"</span>, <span class="string">"Cache-Control: no-cache"</span>, <span class="string">"Pragma: no-cache"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    $response = curl_exec($ch);</span><br><span class="line">    curl_close($ch);</span><br><span class="line">    $result = json_decode($response, <span class="keyword">true</span>);</span><br><span class="line">    <span class="keyword">return</span> $result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="前端基于jquery-xhr请求"><a href="#前端基于jquery-xhr请求" class="headerlink" title="前端基于jquery xhr请求"></a>前端基于jquery xhr请求</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">        <span class="string">"a"</span> : <span class="number">1</span>,</span><br><span class="line">        <span class="string">"b"</span> : <span class="number">2</span>,</span><br><span class="line">        <span class="string">"c"</span> : [</span><br><span class="line">            &#123;<span class="string">"x"</span>:<span class="number">1</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"x"</span>:<span class="number">2</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;;</span><br><span class="line">    data = <span class="built_in">window</span>.btoa(<span class="built_in">encodeURIComponent</span>(<span class="built_in">JSON</span>.stringify(data)));</span><br><span class="line">    $.post(<span class="string">"api_url"</span>,data,<span class="function"><span class="keyword">function</span>(<span class="params">req</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;,<span class="string">'json'</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="参数验证规则："><a href="#参数验证规则：" class="headerlink" title="参数验证规则："></a>参数验证规则：</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判定是否是正常的访问</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@deprecated</span> 根据参数来进行判定访问的合法性</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isValidRequire</span><span class="params">($requestkey = <span class="string">''</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">empty</span>($requestkey)) &#123;</span><br><span class="line">        $requestkey = config(<span class="string">'DEFAULT_REQUEST_KEY'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    $tempParams = <span class="keyword">array</span>();</span><br><span class="line">    array_push($tempParams, $requestkey);</span><br><span class="line">    $params = get_input();</span><br><span class="line">    $publickey = $params[<span class="string">'public_key'</span>]; <span class="comment">// 内定的验证字段 publickey</span></span><br><span class="line">    <span class="keyword">unset</span>($params[<span class="string">'public_key'</span>]);</span><br><span class="line">    ksort($params);</span><br><span class="line">    <span class="keyword">foreach</span> ($params <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">        <span class="keyword">if</span> (is_array($value)) &#123;</span><br><span class="line">            $value = json_encode($value);</span><br><span class="line">        &#125;</span><br><span class="line">        array_push($tempParams, $key . <span class="string">'='</span> . $value);</span><br><span class="line">    &#125;</span><br><span class="line">    $str_token = hash(<span class="string">'md5'</span>, implode(<span class="string">'&amp;'</span>, $tempParams));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ($str_token != $publickey) &#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;error(<span class="string">'非法访问'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 生成访问的安全验证token</span></span><br><span class="line"><span class="comment"> * $params 参数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildValidToken</span><span class="params">(array $params, $requestkey = <span class="string">''</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $tempParams = <span class="keyword">array</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">empty</span>($requestkey)) &#123;</span><br><span class="line">        $requestkey = config(<span class="string">'DEFAULT_REQUEST_KEY'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    array_push($tempParams, $requestkey);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">empty</span>($params)) &#123;</span><br><span class="line">        ksort($params);</span><br><span class="line">        <span class="keyword">foreach</span> ($params <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">            <span class="keyword">if</span> (is_array($value)) &#123;</span><br><span class="line">                $value = json_encode($value);</span><br><span class="line">            &#125;</span><br><span class="line">            array_push($tempParams, $key . <span class="string">'='</span> . $value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> hash(<span class="string">'md5'</span>, implode(<span class="string">'&amp;'</span>, $tempParams));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encode_data</span><span class="params">($arr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> base64_encode(urlencode(json_encode($arr)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_input</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $data = file_get_contents(<span class="string">'php://input'</span>);</span><br><span class="line">    <span class="keyword">return</span> json_decode(urldecode(base64_decode($data)), <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <table>
+<thead>
+<tr>
+<th>Type</th>
+<th style="text-align:left">Bytes</th>
+<th>有符号最小值</th>
+<th>有符号最大值</th>
+<th>无符号最小值</th>
+<th>无符号最大值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TINYINT</td>
+<td style="text-align:left">1</td>
+<td>-128</td>
+<td>127</td>
+<td>0</td>
+<td>255</td>
+</tr>
+<tr>
+<td>SMALLINT</td>
+<td style="text-align:left">2</td>
+<td>-32768</td>
+<td>32767</td>
+<td>0</td>
+<td>65535</td>
+</tr>
+<tr>
+<td>MEDIUMINT</td>
+<td style="text-align:left">3</td>
+<td>-8388608</td>
+<td>8388607</td>
+<td>0</td>
+<td>16777215</td>
+</tr>
+<tr>
+<td>INT</td>
+<td style="text-align:left">4</td>
+<td>-2147483648</td>
+<td>2147483647</td>
+<td>0</td>
+<td>4294967295</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td style="text-align:left">8</td>
+<td>-9223372036<br>854775808</td>
+<td>9223372036<br>854775807</td>
+<td>0</td>
+<td>1844674407<br>3709551615</td>
+</tr>
+</tbody>
+</table>
 
           
         
@@ -397,7 +445,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -447,7 +495,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -469,7 +517,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
