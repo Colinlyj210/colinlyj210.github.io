@@ -259,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2018/03/17/B树/">
+    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2018/05/28/MySQL开发规范/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LYJ">
@@ -278,7 +278,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/17/B树/" itemprop="url">B树</a></h2>
+                <a class="post-title-link" href="/2018/05/28/MySQL开发规范/" itemprop="url">MySQL开发规范</a></h2>
         
 
         <div class="post-meta">
@@ -290,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T21:48:36+08:00">
-                2018-03-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T17:44:46+08:00">
+                2018-05-28
               </time>
             
 
@@ -330,102 +330,108 @@
       
         
           
-            <h1 id="B树、B-树、B-树、B-树相关"><a href="#B树、B-树、B-树、B-树相关" class="headerlink" title="B树、B-树、B+树、B*树相关"></a><a href="http://www.cnblogs.com/hellowooorld/p/7344866.html" target="_blank" rel="noopener">B树、B-树、B+树、B*树相关</a></h1><p><strong>B树</strong></p>
-<p>​       即二叉搜索树：</p>
-<p>​       1.所有非叶子结点至多拥有两个儿子（Left和Right）；</p>
-<p>​       2.所有结点存储一个关键字；</p>
-<p>​       3.非叶子结点的左指针指向小于其关键字的子树，右指针指向大于其关键字的子树；</p>
-<p>​       如：</p>
-<p>​       </p>
-<p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/1.JPG" alt="img"></p>
-<p>​       B树的搜索，从根结点开始，如果查询的关键字与结点的关键字相等，那么就命中；</p>
-<p>否则，如果查询关键字比结点关键字小，就进入左儿子；如果比结点关键字大，就进入</p>
-<p>右儿子；如果左儿子或右儿子的指针为空，则报告找不到相应的关键字；</p>
-<p>​       如果B树的所有非叶子结点的左右子树的结点数目均保持差不多（平衡），那么B树</p>
-<p>的搜索性能逼近二分查找；但它比连续内存空间的二分查找的优点是，改变B树结构</p>
-<p>（插入与删除结点）不需要移动大段的内存数据，甚至通常是常数开销；</p>
-<p>​       如：</p>
-<p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/2.JPG" alt="img"></p>
-<p>   但B树在经过多次插入与删除后，有可能导致不同的结构：</p>
-<p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/31.JPG" alt="img"></p>
-<p>   右边也是一个B树，但它的搜索性能已经是线性的了；同样的关键字集合有可能导致不同的</p>
-<p>树结构索引；所以，使用B树还要考虑尽可能让B树保持左图的结构，和避免右图的结构，也就</p>
-<p>是所谓的“平衡”问题；      </p>
-<p>​       实际使用的B树都是在原B树的基础上加上平衡算法，即“平衡二叉树”；如何保持B树</p>
-<p>结点分布均匀的平衡算法是平衡二叉树的关键；平衡算法是一种在B树中插入和删除结点的</p>
-<p>策略；</p>
-<p><strong>B-树</strong></p>
-<p>​       是一种多路搜索树（并不是二叉的）：</p>
-<p>​       1.定义任意非叶子结点最多只有M个儿子；且M&gt;2；</p>
-<p>​       2.根结点的儿子数为[2, M]；</p>
-<p>​       3.除根结点以外的非叶子结点的儿子数为[M/2, M]；</p>
-<p>​       4.每个结点存放至少M/2-1（取上整）和至多M-1个关键字；（至少2个关键字）</p>
-<p>​       5.非叶子结点的关键字个数=指向儿子的指针个数-1；</p>
-<p>​       6.非叶子结点的关键字：K[1], K[2], …, K[M-1]；且K[i] &lt; K[i+1]；</p>
-<p>​       7.非叶子结点的指针：P[1], P[2], …, P[M]；其中P[1]指向关键字小于K[1]的</p>
-<p>子树，P[M]指向关键字大于K[M-1]的子树，其它P[i]指向关键字属于(K[i-1], K[i])的子树；</p>
-<p>​       8.所有叶子结点位于同一层；</p>
-<p>​       如：（M=3）</p>
-<p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/4.JPG" alt="img"></p>
-<p>​       B-树的搜索，从根结点开始，对结点内的关键字（有序）序列进行二分查找，如果</p>
-<p>命中则结束，否则进入查询关键字所属范围的儿子结点；重复，直到所对应的儿子指针为</p>
-<p>空，或已经是叶子结点；</p>
-<p>B-树的特性：</p>
-<p>​       1.关键字集合分布在整颗树中；</p>
-<p>​       2.任何一个关键字出现且只出现在一个结点中；</p>
-<p>​       3.搜索有可能在非叶子结点结束；</p>
-<p>​       4.其搜索性能等价于在关键字全集内做一次二分查找；</p>
-<p>​       5.自动层次控制；</p>
-<p>​       由于限制了除根结点以外的非叶子结点，至少含有M/2个儿子，确保了结点的至少</p>
-<p>利用率，其最底搜索性能为：</p>
-<p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/0.JPG" alt="img"></p>
-<p>​    </p>
-<p>​       其中，M为设定的非叶子结点最多子树个数，N为关键字总数；</p>
-<p>​       所以B-树的性能总是等价于二分查找（与M值无关），也就没有B树平衡的问题；</p>
-<p>​       由于M/2的限制，在插入结点时，如果结点已满，需要将结点分裂为两个各占</p>
-<p>M/2的结点；删除结点时，需将两个不足M/2的兄弟结点合并；</p>
-<p><strong>B+树</strong></p>
-<p>​       B+树是B-树的变体，也是一种多路搜索树：</p>
-<p>​       1.其定义基本与B-树同，除了：</p>
-<p>​       2.非叶子结点的子树指针与关键字个数相同；</p>
-<p>​       3.非叶子结点的子树指针P[i]，指向关键字值属于[K[i], K[i+1])的子树</p>
-<p>（B-树是开区间）；</p>
-<p>​       5.为所有叶子结点增加一个链指针；</p>
-<p>​       6.所有关键字都在叶子结点出现；</p>
-<p>​       如：（M=3）</p>
-<p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/5.JPG" alt="img"></p>
-<p>   B+的搜索与B-树也基本相同，区别是B+树只有达到叶子结点才命中（B-树可以在</p>
-<p>非叶子结点命中），其性能也等价于在关键字全集做一次二分查找；</p>
-<p>​       B+的特性：</p>
-<p>​       1.所有关键字都出现在叶子结点的链表中（稠密索引），且链表中的关键字恰好</p>
-<p>是有序的；</p>
-<p>​       2.不可能在非叶子结点命中；</p>
-<p>​       3.非叶子结点相当于是叶子结点的索引（稀疏索引），叶子结点相当于是存储</p>
-<p>（关键字）数据的数据层；</p>
-<p>​       4.更适合文件索引系统；</p>
-<p><strong>B*树</strong></p>
-<p>​       是B+树的变体，在B+树的非根和非叶子结点再增加指向兄弟的指针；</p>
-<p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/6.JPG" alt="img"></p>
-<p>   B<em>树定义了非叶子结点关键字个数至少为(2/3)</em>M，即块的最低使用率为2/3</p>
-<p>（代替B+树的1/2）；</p>
-<p>​       B+树的分裂：当一个结点满时，分配一个新的结点，并将原结点中1/2的数据</p>
-<p>复制到新结点，最后在父结点中增加新结点的指针；B+树的分裂只影响原结点和父</p>
-<p>结点，而不会影响兄弟结点，所以它不需要指向兄弟的指针；</p>
-<p>​       B*树的分裂：当一个结点满时，如果它的下一个兄弟结点未满，那么将一部分</p>
-<p>数据移到兄弟结点中，再在原结点插入关键字，最后修改父结点中兄弟结点的关键字</p>
-<p>（因为兄弟结点的关键字范围改变了）；如果兄弟也满了，则在原结点与兄弟结点之</p>
-<p>间增加新结点，并各复制1/3的数据到新结点，最后在父结点增加新结点的指针；</p>
-<p>​       所以，B*树分配新结点的概率比B+树要低，空间使用率更高；</p>
-<p><strong>小结</strong></p>
-<p>​       B树：二叉树，每个结点只存储一个关键字，等于则命中，小于走左结点，大于</p>
-<p>走右结点；</p>
-<p>​       B-树：多路搜索树，每个结点存储M/2到M个关键字，非叶子结点存储指向关键</p>
-<p>字范围的子结点；</p>
-<p>​       所有关键字在整颗树中出现，且只出现一次，非叶子结点可以命中；</p>
-<p>​       B+树：在B-树基础上，为叶子结点增加链表指针，所有关键字都在叶子结点</p>
-<p>中出现，非叶子结点作为叶子结点的索引；B+树总是到叶子结点才命中；</p>
-<p>​       B*树：在B+树基础上，为非叶子结点也增加链表指针，将结点的最低利用率</p>
-<p>从1/2提高到2/3；</p>
+            <h1 id="MySQL开发规范"><a href="#MySQL开发规范" class="headerlink" title="MySQL开发规范"></a>MySQL开发规范</h1><h3 id="1-命名规范"><a href="#1-命名规范" class="headerlink" title="1.命名规范"></a>1.命名规范</h3><p>(1)库名、表名、字段名必须使用小写字母，并采用下划线分割。  </p>
+<p>(2)库名、表名、字段名尽量不用MySQL保留字。 </p>
+<p>  （常见的 date, day, month, year, year_month, hour_minute, hour_second, user, host, hosts, owner, names, type, view, begin, end, status, event, page ）。 </p>
+<h3 id="2-基础规范"><a href="#2-基础规范" class="headerlink" title="2.基础规范"></a>2.基础规范</h3><p>(1)使用InnoDB存储引擎。 </p>
+<p>(2)表字符集使用UTF8，必要时可使用UTF8MB4字符集。 </p>
+<p>(3)所有表都需要添加注释；不能见名知意的字段都需要增加注释。 </p>
+<h3 id="3-库表设计"><a href="#3-库表设计" class="headerlink" title="3.库表设计"></a>3.库表设计</h3><p>(1)将大字段、访问频率低的字段拆分到单独的表中存储，分离冷热数据。 </p>
+<h3 id="4-字段设计"><a href="#4-字段设计" class="headerlink" title="4.字段设计"></a>4.字段设计</h3><p>(1)建议使用UNSIGNED存储非负数值。</p>
+<p>(2)建议使用INT UNSIGNED存储IPV4。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT INET_NTOA(3520061480); </span><br><span class="line">SELECT INET_ATON(&apos;209.207.224.40&apos;);</span><br></pre></td></tr></table></figure>
+<p>(3)用DECIMAL代替FLOAT和DOUBLE存储精确浮点数，例如支付相关数据。 </p>
+<p>(4)INT类型固定占4字节存储，例如INT(4)仅代表显示字符宽度为4位，不代表存储长度，一般不用写显示宽度，不写保留默认的即可。 </p>
+<p>(5)区分使用TINYINT、SMALLINT、MEDIUMINT、INT、BIGINT数据类型。例如取值范围为0-80时，使用TINYINT。 </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">大小</th>
+<th style="text-align:left">范围（有符号）</th>
+<th style="text-align:left">范围（无符号）</th>
+<th style="text-align:left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">TINYINT</td>
+<td style="text-align:left">1 字节</td>
+<td style="text-align:left">(-128，127)</td>
+<td style="text-align:left">(0，255)</td>
+<td style="text-align:left">小整数值</td>
+</tr>
+<tr>
+<td style="text-align:left">SMALLINT</td>
+<td style="text-align:left">2 字节</td>
+<td style="text-align:left">(-32 768，32 767)</td>
+<td style="text-align:left">(0，65 535)</td>
+<td style="text-align:left">大整数值</td>
+</tr>
+<tr>
+<td style="text-align:left">MEDIUMINT</td>
+<td style="text-align:left">3 字节</td>
+<td style="text-align:left">(-8 388 608，8 388 607)</td>
+<td style="text-align:left">(0，16 777 215)</td>
+<td style="text-align:left">大整数值</td>
+</tr>
+<tr>
+<td style="text-align:left">INT或INTEGER</td>
+<td style="text-align:left">4 字节</td>
+<td style="text-align:left">(-2 147 483 648，2 147 483 647)</td>
+<td style="text-align:left">(0，4 294 967 295)</td>
+<td style="text-align:left">大整数值</td>
+</tr>
+<tr>
+<td style="text-align:left">BIGINT</td>
+<td style="text-align:left">8 字节</td>
+<td style="text-align:left">(-9 233 372 036 854 775 808，9 223 372 036 854 775 807)</td>
+<td style="text-align:left">(0，18 446 744 073 709 551 615)</td>
+<td style="text-align:left">极大整数值</td>
+</tr>
+</tbody>
+</table>
+<p>(6)建议使用TINYINT来代替ENUM, BIT类型。 </p>
+<p>(7)尽可能不使用TEXT、BLOB类型。 </p>
+<p>(8)使用VARBINARY存储大小写敏感的变长字符串或二进制内容。</p>
+<p>(9)使用尽可能小的VARCHAR字段。VARCHAR(N)中的N表示字符数而非字节数。  </p>
+<h3 id="5-索引规范"><a href="#5-索引规范" class="headerlink" title="5.索引规范"></a>5.索引规范</h3><p>(1) 索引名必须全部使用小写。 </p>
+<p>(2) 非唯一索引按照“idx<em>表名首字母简写</em>字段名首字母简写_字段名首字母简写…”进行命名，</p>
+<p>唯一索引按照“uniq<em>表名首字母简写</em>字段名首字母简写_字段名首字母简写…”进行命名，</p>
+<p>简写尽量不多于4个字符，表名简写尽量库内不重名即可，字段名简写尽量表内不重复即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">简写规则：</span><br><span class="line">* end_time 简写为et，以_分隔的单词，以各单词首字母简写。</span><br><span class="line">* action_type 简写为aty,  action_time 简写为ati， 简写有重名时，可再多加一两个字符，尽量保持简洁即可。</span><br><span class="line">* status 简写为sta，单词取前面3-4个不重复的字符。</span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line">order_info表：uniq_oi_cid_lmt (campaign_id, last_modify_time)</span><br><span class="line">trade表：idx_tra_uid_et_tid_sta (user_id, end_time, tid, status)</span><br></pre></td></tr></table></figure>
+<p>(3)表必须有主键，主键字段放首行，推荐使用自增列作为主键，当表可能较大时主键优先考虑使用bigint。 </p>
+<p>(4)禁止冗余和重复索引。 </p>
+<p>(5)尽量不使用外键，可以考虑代码实现。</p>
+<p>(6)关联表查询时，JOIN列的数据类型必须相同，并且要建立索引。 </p>
+<p>(7)组合索引中，应优先考虑分组和排序需求，在同等条件下，区分度大的字段放在最前。 </p>
+<p>(8)对字符串使用前缀索引，前缀索引长度不超过8个字符，但无法分组排序。 </p>
+<p>(9)不对过长的VARCHAR字段建立索引。建议优先考虑添加CRC32或MD5伪列，并对伪列建⽴索引。 </p>
+<p>(10)合理创建组合索引，(a，b，c) 相当于 (a) 、(a，b) 、(a，b，c)。 </p>
+<p>(11)合理使用覆盖索引减少IO，避免排序。 </p>
+<h3 id="6-SQL设计"><a href="#6-SQL设计" class="headerlink" title="6.SQL设计"></a>6.SQL设计</h3><p>(1)用IN代替OR。SQL语句中IN包含的值不应过多，尽量少于1000个。 </p>
+<p>(2)禁止隐式转换。数值类型禁止加引号；字符串类型必须加引号。 </p>
+<p>(3)子查询性能差时可以尝试用JOIN代替。 </p>
+<p>(4)避免在MySQL条件字段中进行数学运算和函数运算。 </p>
+<p>(5)减少与数据库交互次数，尽量采用批量SQL语句。</p>
+<pre><code>a) INSERT ... ON DUPLICATE KEY UPDATE 
+b) REPLACE INTO 
+c) INSERT IGNORE 
+d) INSERT INTO VALUES(),()... 
+</code></pre><p>(6)对同一个表的多次alter操作必须合并为一次操作。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`trade`</span></span><br><span class="line">  <span class="keyword">ADD</span> <span class="keyword">KEY</span> <span class="string">`idx_trade_buyer`</span> (<span class="string">`buyer_nick`</span>),</span><br><span class="line">  <span class="keyword">ADD</span> <span class="keyword">KEY</span> <span class="string">`idx_trade_uid_created`</span> (<span class="string">`user_id`</span>,<span class="string">`created`</span>),</span><br><span class="line">  <span class="keyword">DROP</span> <span class="keyword">KEY</span> <span class="string">`idx_trade_uid_ptime_created`</span>;</span><br></pre></td></tr></table></figure>
+<p>(7)拆分复杂SQL为多个小SQL，避免大事务。</p>
+<p>(8)用UNION ALL代替UNION，UNION去重，UNION ALL不去重。 </p>
+<p>(9)统计行数用COUNT(*)或COUNT(1)。 </p>
+<p>(10)INSERT语句必须指定字段列表，禁止使用 INSERT INTO TABLE VALUES(1, …)，必须使用INSERT INTO TABLE(a, …) VALUES(1, …)。 </p>
+<p>(11)禁止单条SQL语句同时更新多个表。</p>
+<p>(12)使用%前导查询无法使用索引，例如：like “%abc”，大结果集不用，小结果集可以使用。</p>
+<p>(13)使用EXPLAIN判断SQL语句是否合理使用索引，尽量避免extra列出现：Using File Sort、Using Temporary。</p>
+<p>(14)如果不需要排序，应该去掉order by。</p>
+<h3 id="7-行为规范"><a href="#7-行为规范" class="headerlink" title="7.行为规范"></a>7.行为规范</h3><p>(1)表结构变更需要通知DBA进行审核。</p>
+<p>(2)提交线上建表改表需求，尽可能详细注明涉及到的所有SQL语句（包括INSERT、DELETE、UPDATE），便于DBA进⾏审核和优化。 </p>
+<p>(3)查询结果集较大时需要加上limit, 避免把sgw带宽占满影响其他人访问。</p>
+<p>(4)客户端运行的sql被取消或者停止后，还需要再执行show processlist，如果还在运行，则kill掉该sql。</p>
 
           
         
@@ -465,7 +471,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -515,7 +521,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -537,7 +543,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
