@@ -82,7 +82,7 @@
 <meta name="description" content="Spring Cloud大家庭 Eureka：服务注册和发现组件 Ribbon：负载均衡 Hystrix：熔断组件 Config：统一配置管理 Zuul：路由网关 Bus：消息总线 Sleuth：分布式链路追踪 …   EurekaSpring Cloud Eureka提供服务端与客户端，服务端即是服务注册中心，客户端">
 <meta name="keywords" content="java,spring,spring cloud">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring Cloud">
+<meta property="og:title" content="Spring Cloud介绍及与Dubbo的对比">
 <meta property="og:url" content="https://www.lyj210.cn/2018/10/11/Spring Cloud/index.html">
 <meta property="og:site_name" content="LYJ&#39;s NOTES">
 <meta property="og:description" content="Spring Cloud大家庭 Eureka：服务注册和发现组件 Ribbon：负载均衡 Hystrix：熔断组件 Config：统一配置管理 Zuul：路由网关 Bus：消息总线 Sleuth：分布式链路追踪 …   EurekaSpring Cloud Eureka提供服务端与客户端，服务端即是服务注册中心，客户端完成注册与发现。  Ribbon在微服务中使用Ribbon实现负载均衡，Ribb">
@@ -97,9 +97,9 @@
 <meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/bus.png">
 <meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/dubbo.png">
 <meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/dubbovsspring.jpeg">
-<meta property="og:updated_time" content="2018-10-22T14:26:33.062Z">
+<meta property="og:updated_time" content="2018-10-22T14:27:31.183Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring Cloud">
+<meta name="twitter:title" content="Spring Cloud介绍及与Dubbo的对比">
 <meta name="twitter:description" content="Spring Cloud大家庭 Eureka：服务注册和发现组件 Ribbon：负载均衡 Hystrix：熔断组件 Config：统一配置管理 Zuul：路由网关 Bus：消息总线 Sleuth：分布式链路追踪 …   EurekaSpring Cloud Eureka提供服务端与客户端，服务端即是服务注册中心，客户端完成注册与发现。  Ribbon在微服务中使用Ribbon实现负载均衡，Ribb">
 <meta name="twitter:image" content="https://www.lyj210.cn/2018/10/11/images/spring%20cloud.png">
 
@@ -137,7 +137,7 @@
 
 
 
-  <title>Spring Cloud | LYJ's NOTES</title>
+  <title>Spring Cloud介绍及与Dubbo的对比 | LYJ's NOTES</title>
   
 
 
@@ -291,7 +291,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Spring Cloud</h2>
+          <h2 class="post-title" itemprop="name headline">Spring Cloud介绍及与Dubbo的对比</h2>
         
 
         <div class="post-meta">
@@ -401,7 +401,7 @@
 <h2 id="Bus"><a href="#Bus" class="headerlink" title="Bus"></a>Bus</h2><p>Spring Cloud Bus 将分布式的节点用轻量的消息代理连接起来。它可以用于广播配置文件的更改或者服务之间的通讯，也可以用于监控。当git文件更改的时候，通过pc端用post 向端口为8882的config-client发送请求/bus/refresh／；此时8882端口会发送一个消息，由消息总线向其他服务传递，从而使整个微服务集群都达到更新配置文件。（Webhook）</p>
 <p><img src="../images/bus.png" alt="bus"></p>
 <h2 id="Sleuth"><a href="#Sleuth" class="headerlink" title="Sleuth"></a>Sleuth</h2><p>微服务架构上通过业务来划分服务的，通过REST调用，对外暴露的一个接口，可能需要很多个服务协同才能完成这个接口功能，如果链路上任何一个服务出现问题或者网络超时，都会形成导致接口调用失败。随着业务的不断扩张，服务之间互相调用会越来越复杂。Spring Cloud Sleuth 主要功能就是在分布式系统中提供追踪解决方案，并且兼容支持了 zipkin，你只需要在pom文件中引入相应的依赖即可。</p>
-<h1 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h1><p><img src="../images/dubbo.png" alt="未命名文件"></p>
+<h1 id="Spring-Cloud-VS-Dubbo"><a href="#Spring-Cloud-VS-Dubbo" class="headerlink" title="Spring Cloud VS Dubbo"></a>Spring Cloud VS Dubbo</h1><h2 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h2><p><img src="../images/dubbo.png" alt="未命名文件"></p>
 <h2 id="Spring-Cloud-与Dubbo核心架构要素对比"><a href="#Spring-Cloud-与Dubbo核心架构要素对比" class="headerlink" title="Spring Cloud 与Dubbo核心架构要素对比"></a>Spring Cloud 与Dubbo核心架构要素对比</h2><table>
 <thead>
 <tr>
@@ -670,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Cloud大家庭"><span class="nav-number">1.</span> <span class="nav-text">Spring Cloud大家庭</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka"><span class="nav-number">1.1.</span> <span class="nav-text">Eureka</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ribbon"><span class="nav-number">1.2.</span> <span class="nav-text">Ribbon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hystric"><span class="nav-number">1.3.</span> <span class="nav-text">Hystric</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config"><span class="nav-number">1.4.</span> <span class="nav-text">Config</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zuul"><span class="nav-number">1.5.</span> <span class="nav-text">Zuul</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bus"><span class="nav-number">1.6.</span> <span class="nav-text">Bus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sleuth"><span class="nav-number">1.7.</span> <span class="nav-text">Sleuth</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dubbo"><span class="nav-number">2.</span> <span class="nav-text">Dubbo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-与Dubbo核心架构要素对比"><span class="nav-number">2.1.</span> <span class="nav-text">Spring Cloud 与Dubbo核心架构要素对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通讯协议"><span class="nav-number">2.2.</span> <span class="nav-text">通讯协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能比较"><span class="nav-number">2.3.</span> <span class="nav-text">性能比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务依赖方式"><span class="nav-number">2.4.</span> <span class="nav-text">服务依赖方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件运行流程"><span class="nav-number">2.5.</span> <span class="nav-text">组件运行流程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Cloud大家庭"><span class="nav-number">1.</span> <span class="nav-text">Spring Cloud大家庭</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka"><span class="nav-number">1.1.</span> <span class="nav-text">Eureka</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ribbon"><span class="nav-number">1.2.</span> <span class="nav-text">Ribbon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hystric"><span class="nav-number">1.3.</span> <span class="nav-text">Hystric</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config"><span class="nav-number">1.4.</span> <span class="nav-text">Config</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zuul"><span class="nav-number">1.5.</span> <span class="nav-text">Zuul</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bus"><span class="nav-number">1.6.</span> <span class="nav-text">Bus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sleuth"><span class="nav-number">1.7.</span> <span class="nav-text">Sleuth</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Cloud-VS-Dubbo"><span class="nav-number">2.</span> <span class="nav-text">Spring Cloud VS Dubbo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dubbo"><span class="nav-number">2.1.</span> <span class="nav-text">Dubbo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-与Dubbo核心架构要素对比"><span class="nav-number">2.2.</span> <span class="nav-text">Spring Cloud 与Dubbo核心架构要素对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通讯协议"><span class="nav-number">2.3.</span> <span class="nav-text">通讯协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能比较"><span class="nav-number">2.4.</span> <span class="nav-text">性能比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务依赖方式"><span class="nav-number">2.5.</span> <span class="nav-text">服务依赖方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件运行流程"><span class="nav-number">2.6.</span> <span class="nav-text">组件运行流程</span></a></li></ol></li></ol></div>
             
 
           </div>
