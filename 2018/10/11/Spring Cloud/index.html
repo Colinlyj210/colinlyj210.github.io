@@ -87,21 +87,21 @@
 <meta property="og:site_name" content="LYJ&#39;s NOTES">
 <meta property="og:description" content="Spring Cloud大家庭 Eureka：服务注册和发现组件 Ribbon：负载均衡 Hystrix：熔断组件 Config：统一配置管理 Zuul：路由网关 Bus：消息总线 Sleuth：分布式链路追踪 …   EurekaSpring Cloud Eureka提供服务端与客户端，服务端即是服务注册中心，客户端完成注册与发现。  Ribbon在微服务中使用Ribbon实现负载均衡，Ribb">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://www.lyj210.cn/Users/lyj/prj/hexo/source/images/spring%20cloud.png">
-<meta property="og:image" content="https://www.lyj210.cn/Users/lyj/prj/hexo/source/images/eureka.png">
-<meta property="og:image" content="https://www.lyj210.cn/Users/lyj/prj/hexo/source/images/ribbon.png">
-<meta property="og:image" content="https://www.lyj210.cn/Users/lyj/prj/hexo/source/images/hystric.png">
-<meta property="og:image" content="https://www.lyj210.cn/Users/lyj/prj/hexo/source/images/config1.png">
-<meta property="og:image" content="https://www.lyj210.cn/Users/lyj/prj/hexo/source/images/config.png">
-<meta property="og:image" content="https://www.lyj210.cn/Users/lyj/prj/hexo/source/images/zuul.jpg">
-<meta property="og:image" content="https://www.lyj210.cn/Users/lyj/prj/hexo/source/images/bus.png">
-<meta property="og:image" content="https://www.lyj210.cn/Users/lyj/prj/hexo/source/images/dubbo.png">
-<meta property="og:image" content="https://www.lyj210.cn/Users/lyj/prj/hexo/source/images/dubbovsspring.jpeg">
-<meta property="og:updated_time" content="2018-10-22T14:20:24.680Z">
+<meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/spring%20cloud.png">
+<meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/eureka.png">
+<meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/ribbon.png">
+<meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/hystric.png">
+<meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/config1.png">
+<meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/config.png">
+<meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/zuul.jpg">
+<meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/bus.png">
+<meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/dubbo.png">
+<meta property="og:image" content="https://www.lyj210.cn/2018/10/11/images/dubbovsspring.jpeg">
+<meta property="og:updated_time" content="2018-10-22T14:24:54.110Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Cloud">
 <meta name="twitter:description" content="Spring Cloud大家庭 Eureka：服务注册和发现组件 Ribbon：负载均衡 Hystrix：熔断组件 Config：统一配置管理 Zuul：路由网关 Bus：消息总线 Sleuth：分布式链路追踪 …   EurekaSpring Cloud Eureka提供服务端与客户端，服务端即是服务注册中心，客户端完成注册与发现。  Ribbon在微服务中使用Ribbon实现负载均衡，Ribb">
-<meta name="twitter:image" content="https://www.lyj210.cn/Users/lyj/prj/hexo/source/images/spring%20cloud.png">
+<meta name="twitter:image" content="https://www.lyj210.cn/2018/10/11/images/spring%20cloud.png">
 
 
 
@@ -373,16 +373,16 @@
 <li>Sleuth：分布式链路追踪</li>
 <li>…</li>
 </ul>
-<p><img src="/Users/lyj/prj/hexo/source/images/spring cloud.png" alt="spring cloud"></p>
+<p><img src="../images/spring cloud.png" alt="spring cloud"></p>
 <h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p>Spring Cloud Eureka提供服务端与客户端，服务端即是服务注册中心，客户端完成注册与发现。</p>
-<p><img src="/Users/lyj/prj/hexo/source/images/eureka.png" alt="eureka"></p>
+<p><img src="../images/eureka.png" alt="eureka"></p>
 <h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><p>在微服务中使用Ribbon实现负载均衡，Ribbon先从Eureka Server中获取列表，然后根据负载均衡算法进行负载均衡，将请求转发到其他微服务。</p>
-<p><img src="/Users/lyj/prj/hexo/source/images/ribbon.png" alt="ribbon"></p>
+<p><img src="../images/ribbon.png" alt="ribbon"></p>
 <h2 id="Hystric"><a href="#Hystric" class="headerlink" title="Hystric"></a>Hystric</h2><p>由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。为了解决这个问题，业界提出了断路器模型。</p>
-<p><img src="/Users/lyj/prj/hexo/source/images/hystric.png" alt="hystric"></p>
+<p><img src="../images/hystric.png" alt="hystric"></p>
 <h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>在分布式系统中，由于服务数量巨多，为了方便服务配置文件统一管理，实时更新，所以需要分布式配置中心组件。在Spring Cloud中，有分布式配置中心组件spring cloud config ，它支持配置服务放在配置服务的内存中（即本地），也支持放在远程Git仓库中。在spring cloud config 组件中，分两个角色，一是config server，二是config client。</p>
-<p><img src="/Users/lyj/prj/hexo/source/images/config1.png" alt="config"></p>
-<p><img src="/Users/lyj/prj/hexo/source/images/config.png" alt="config"></p>
+<p><img src="../images/config1.png" alt="config"></p>
+<p><img src="../images/config.png" alt="config"></p>
 <h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><p>Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
 <p>zuul有以下功能：</p>
 <ul>
@@ -397,11 +397,11 @@
 <li>Static Response handling</li>
 <li>Active/Active traffic management</li>
 </ul>
-<p><img src="/Users/lyj/prj/hexo/source/images/zuul.jpg" alt="zuul"></p>
+<p><img src="../images/zuul.jpg" alt="zuul"></p>
 <h2 id="Bus"><a href="#Bus" class="headerlink" title="Bus"></a>Bus</h2><p>Spring Cloud Bus 将分布式的节点用轻量的消息代理连接起来。它可以用于广播配置文件的更改或者服务之间的通讯，也可以用于监控。当git文件更改的时候，通过pc端用post 向端口为8882的config-client发送请求/bus/refresh／；此时8882端口会发送一个消息，由消息总线向其他服务传递，从而使整个微服务集群都达到更新配置文件。（Webhook）</p>
-<p><img src="/Users/lyj/prj/hexo/source/images/bus.png" alt="bus"></p>
+<p><img src="../images/bus.png" alt="bus"></p>
 <h2 id="Sleuth"><a href="#Sleuth" class="headerlink" title="Sleuth"></a>Sleuth</h2><p>微服务架构上通过业务来划分服务的，通过REST调用，对外暴露的一个接口，可能需要很多个服务协同才能完成这个接口功能，如果链路上任何一个服务出现问题或者网络超时，都会形成导致接口调用失败。随着业务的不断扩张，服务之间互相调用会越来越复杂。Spring Cloud Sleuth 主要功能就是在分布式系统中提供追踪解决方案，并且兼容支持了 zipkin，你只需要在pom文件中引入相应的依赖即可。</p>
-<h1 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h1><p><img src="/Users/lyj/prj/hexo/source/images/dubbo.png" alt="未命名文件"></p>
+<h1 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h1><p><img src="../images/dubbo.png" alt="未命名文件"></p>
 <h2 id="Spring-Cloud-与Dubbo核心架构要素对比"><a href="#Spring-Cloud-与Dubbo核心架构要素对比" class="headerlink" title="Spring Cloud 与Dubbo核心架构要素对比"></a>Spring Cloud 与Dubbo核心架构要素对比</h2><table>
 <thead>
 <tr>
@@ -470,7 +470,7 @@
 <li>Webservice：基于 CXF 的 frontend-simple 和 transports-http 实现。</li>
 </ul>
 <p><strong>Spring Cloud 使用 HTTP 协议的 REST API。</strong></p>
-<h2 id="性能比较"><a href="#性能比较" class="headerlink" title="性能比较"></a>性能比较</h2><p><img src="/Users/lyj/prj/hexo/source/images/dubbovsspring.jpeg" alt="dubbovsspring"></p>
+<h2 id="性能比较"><a href="#性能比较" class="headerlink" title="性能比较"></a>性能比较</h2><p><img src="../images/dubbovsspring.jpeg" alt="dubbovsspring"></p>
 <p>Dubbo 支持各种通信协议，而且消费方和服务方使用长链接方式交互，通信速度上略胜 Spring Cloud，如果对于系统的响应时间有严格要求，长链接更合适。</p>
 <h2 id="服务依赖方式"><a href="#服务依赖方式" class="headerlink" title="服务依赖方式"></a>服务依赖方式</h2><p>Dubbo需要为每个微服务定义各自的 Interface 接口，并通过持续集成发布到私有仓库中。调用方应用对微服务提供的抽象接口存在强依赖关系，开发、测试、集成环境都需要严格的管理版本依赖。</p>
 <p>Spring Cloud 通过 Json 交互，省略了版本管理的问题，但是具体字段含义需要统一管理，自身 Rest API 方式交互，为跨平台调用奠定了基础。</p>
