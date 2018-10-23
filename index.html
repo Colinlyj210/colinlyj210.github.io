@@ -463,6 +463,61 @@
 <h2 id="服务依赖方式"><a href="#服务依赖方式" class="headerlink" title="服务依赖方式"></a>服务依赖方式</h2><p>Dubbo需要为每个微服务定义各自的 Interface 接口，并通过持续集成发布到私有仓库中。调用方应用对微服务提供的抽象接口存在强依赖关系，开发、测试、集成环境都需要严格的管理版本依赖。</p>
 <p>Spring Cloud 通过 Json 交互，省略了版本管理的问题，但是具体字段含义需要统一管理，自身 Rest API 方式交互，为跨平台调用奠定了基础。</p>
 <h2 id="组件运行流程"><a href="#组件运行流程" class="headerlink" title="组件运行流程"></a>组件运行流程</h2><p>Dubbo 需要自己开发一套 API 网关，而 Spring Cloud 则可以通过 Zuul 配置即可完成网关定制。</p>
+<h1 id="Kubernates"><a href="#Kubernates" class="headerlink" title="Kubernates"></a>Kubernates</h1><p>Kubernates是一个容器集群管理系统，为容器化的应用程序提供部署运行、维护、扩展、资源调度、服务发现等功能。Kubernates是Google运行Borg大规模系统达15年之久的一个经验总结。它结合了社区的最佳创意和实践，旨在帮助开发人员将容器打包、动态编排，同时帮助各大公司向微服务方向进行技术演进。</p>
+<h2 id="Kubernates-VS-Spring-Cloud"><a href="#Kubernates-VS-Spring-Cloud" class="headerlink" title="Kubernates VS Spring Cloud"></a>Kubernates VS Spring Cloud</h2><table>
+<thead>
+<tr>
+<th>服务关注点</th>
+<th>Spring Cloud</th>
+<th>Kubernates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>配置管理</td>
+<td>Config</td>
+<td>Kubernates ConfigMap</td>
+</tr>
+<tr>
+<td>服务发现</td>
+<td>Eureka</td>
+<td>Kubernates Services</td>
+</tr>
+<tr>
+<td>负载均衡</td>
+<td>Ribbon</td>
+<td>Kubernates Services</td>
+</tr>
+<tr>
+<td>网关</td>
+<td>Zuul</td>
+<td>Kubernates Services</td>
+</tr>
+<tr>
+<td>分布式追踪</td>
+<td>Sleuth</td>
+<td>Open tracing</td>
+</tr>
+<tr>
+<td>容错</td>
+<td>Hystrix</td>
+<td>Kubernates Health Check</td>
+</tr>
+<tr>
+<td>分布式日志</td>
+<td>ELK</td>
+<td>EFK</td>
+</tr>
+<tr>
+<td>任务管理</td>
+<td>Spring Batch</td>
+<td>Kubernates Jobs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Kubernates是支持多语言，是一个容器管理平台，使程序容器化，并在容器管理上提供微服务功能。</strong></p>
+<p><strong>除了提供基本的构建微服务功能外，还提供了环境、资源限制、管理应用程序生命周期的功能。Kubernates更像是一个平台，而Spring Cloud是一个框架。</strong></p>
+<p><strong>Kubernates面向DevOps人员，普通开发人员需要学习很多这方面的知识，而且新特性更新快，需要DevOps人员学习跟进，学习成本非常高。</strong></p>
 
           
         
