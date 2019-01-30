@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="lnmp, thinkphp,运维" />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="LYJ&#39;s NOTES">
-<meta property="og:url" content="https://www.lyj210.cn/index.html">
+<meta name="description" content="Java最佳实践（1）-创建对象使用静态工厂方法创建 from： 类型转换方法，它只有单个参数，返回该类型的一个相对应的实例 1Date d = Date.from(instant)  of：聚合方法，带有多个参数，返回该类型的一个实例，把他们合并起来 1Set&amp;lt;Rank&amp;gt; faceCard">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java最佳实践（1）">
+<meta property="og:url" content="https://www.lyj210.cn/2019/01/30/Java最佳实践（1）/index.html">
 <meta property="og:site_name" content="LYJ&#39;s NOTES">
+<meta property="og:description" content="Java最佳实践（1）-创建对象使用静态工厂方法创建 from： 类型转换方法，它只有单个参数，返回该类型的一个相对应的实例 1Date d = Date.from(instant)  of：聚合方法，带有多个参数，返回该类型的一个实例，把他们合并起来 1Set&amp;lt;Rank&amp;gt; faceCards=EnumSet.of(JACK, QUEEN, KING)  valueOf：比from和o">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-30T05:58:47.584Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LYJ&#39;s NOTES">
+<meta name="twitter:title" content="Java最佳实践（1）">
+<meta name="twitter:description" content="Java最佳实践（1）-创建对象使用静态工厂方法创建 from： 类型转换方法，它只有单个参数，返回该类型的一个相对应的实例 1Date d = Date.from(instant)  of：聚合方法，带有多个参数，返回该类型的一个实例，把他们合并起来 1Set&amp;lt;Rank&amp;gt; faceCards=EnumSet.of(JACK, QUEEN, KING)  valueOf：比from和o">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.lyj210.cn/"/>
+  <link rel="canonical" href="https://www.lyj210.cn/2019/01/30/Java最佳实践（1）/"/>
 
 
 
 
 
-  <title>LYJ's NOTES</title>
+  <title>Java最佳实践（1） | LYJ's NOTES</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -276,9 +280,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/30/Java最佳实践（1）/" itemprop="url">Java最佳实践（1）</a></h2>
+          <h2 class="post-title" itemprop="name headline">Java最佳实践（1）</h2>
         
 
         <div class="post-meta">
@@ -328,9 +330,7 @@
       
 
       
-        
-          
-            <h1 id="Java最佳实践（1）-创建对象"><a href="#Java最佳实践（1）-创建对象" class="headerlink" title="Java最佳实践（1）-创建对象"></a>Java最佳实践（1）-创建对象</h1><h2 id="使用静态工厂方法创建"><a href="#使用静态工厂方法创建" class="headerlink" title="使用静态工厂方法创建"></a>使用静态工厂方法创建</h2><ol>
+        <h1 id="Java最佳实践（1）-创建对象"><a href="#Java最佳实践（1）-创建对象" class="headerlink" title="Java最佳实践（1）-创建对象"></a>Java最佳实践（1）-创建对象</h1><h2 id="使用静态工厂方法创建"><a href="#使用静态工厂方法创建" class="headerlink" title="使用静态工厂方法创建"></a>使用静态工厂方法创建</h2><ol>
 <li><p>from： 类型转换方法，它只有单个参数，返回该类型的一个相对应的实例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Date d = Date.from(instant)</span><br></pre></td></tr></table></figure>
 </li>
@@ -373,8 +373,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>(InputStream in = <span class="keyword">new</span> ByteArrayInputStream(str.getBytes()))&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 实现了Closeable对象的可以用try-with-resources的写法，</span></span><br><span class="line"><span class="comment">    * 将InputStream之类的写在try()中不需要再在finally中关闭</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>不需要再写finally去关闭，显得更简洁易懂</p>
 
-          
-        
       
     </div>
     
@@ -389,14 +387,36 @@
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/13/CompletableFuture/" rel="next" title="CompletableFuture">
+                <i class="fa fa-chevron-left"></i> CompletableFuture
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -406,14 +426,11 @@
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -421,6 +438,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -441,8 +462,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -522,6 +552,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java最佳实践（1）-创建对象"><span class="nav-number">1.</span> <span class="nav-text">Java最佳实践（1）-创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用静态工厂方法创建"><span class="nav-number">1.1.</span> <span class="nav-text">使用静态工厂方法创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用建造者（Builder）模式"><span class="nav-number">1.2.</span> <span class="nav-text">使用建造者（Builder）模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用try-with-resources的写法"><span class="nav-number">1.3.</span> <span class="nav-text">使用try-with-resources的写法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -662,6 +708,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
