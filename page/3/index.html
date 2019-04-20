@@ -259,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2018/12/11/nginx-rtmp-微信小程序直播/">
+    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2019/01/30/Java最佳实践（1）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LYJ">
@@ -278,7 +278,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/11/nginx-rtmp-微信小程序直播/" itemprop="url">nginx+rtmp+微信小程序直播</a></h2>
+                <a class="post-title-link" href="/2019/01/30/Java最佳实践（1）/" itemprop="url">Java最佳实践（1）</a></h2>
         
 
         <div class="post-meta">
@@ -290,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-11T10:14:49+08:00">
-                2018-12-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-30T13:15:35+08:00">
+                2019-01-30
               </time>
             
 
@@ -330,21 +330,48 @@
       
         
           
-            <h1 id="Nginx-rtmp实现直播"><a href="#Nginx-rtmp实现直播" class="headerlink" title="Nginx+rtmp实现直播"></a>Nginx+rtmp实现直播</h1><p><strong>本文是Mac环境下的安装配置</strong></p>
-<h2 id="1-安装Nginx及rtmp模块"><a href="#1-安装Nginx及rtmp模块" class="headerlink" title="1.安装Nginx及rtmp模块"></a>1.安装Nginx及rtmp模块</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew tap denji/nginx</span><br><span class="line">brew install nginx-full --with-rtmp-module</span><br></pre></td></tr></table></figure>
-<p>相关文章请参考：<a href="https://denji.github.io/homebrew-nginx/" target="_blank" rel="noopener">https://denji.github.io/homebrew-nginx/</a></p>
-<h2 id="2-配置Nginx"><a href="#2-配置Nginx" class="headerlink" title="2.配置Nginx"></a>2.配置Nginx</h2><p>找到nginx.conf进行修改</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#user  nobody;</span></span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#error_log  logs/error.log;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  info;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#pid        logs/nginx.pid;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    ... #省略默认代码</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#RTMP服务</span></span><br><span class="line"><span class="section">rtmp</span> &#123;        </span><br><span class="line">    server&#123;        </span><br><span class="line">        <span class="attribute">listen</span> <span class="number">1935</span>;  <span class="comment">#服务端口</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#点播服务（播放视频）如果只是直播这里可以不要</span></span><br><span class="line">        <span class="attribute">application</span> vod &#123;</span><br><span class="line">            <span class="attribute">play</span> /Users/lyj/prj/rtmp/vod; <span class="comment">#视频文件存放位置。</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">application</span> live&#123;</span><br><span class="line">            <span class="attribute">live</span> <span class="literal">on</span>;        <span class="comment">#直播</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">#回看功能 视频切片变成ts文件</span></span><br><span class="line">            <span class="comment">#hls on;                                 #这个参数把直播服务器改造成实时回放服务器。</span></span><br><span class="line">            <span class="comment">#wait_key on;                           #对视频切片进行保护，这样就不会产生马赛克了。</span></span><br><span class="line">            <span class="comment">#hls_path /Users/lyj/prj/rtmp/hls;       #切片视频文件存放位置。</span></span><br><span class="line">            <span class="comment">#hls_fragment 10s;                       #每个视频切片的时长。</span></span><br><span class="line">            <span class="comment">#hls_playlist_length 60s;                #总共可以回看的事件，这里设置的是1分钟。</span></span><br><span class="line">            <span class="comment">#hls_continuous on;                      #连续模式。</span></span><br><span class="line">            <span class="comment">#hls_cleanup on;                         #对多余的切片进行删除。</span></span><br><span class="line">            <span class="comment">#hls_nested on;                          #嵌套模式。</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>更详细的配置请参考：<a href="https://github.com/sergey-dryabzhinsky/nginx-rtmp-module" target="_blank" rel="noopener">https://github.com/sergey-dryabzhinsky/nginx-rtmp-module</a></p>
-<h2 id="3-微信小程序直播设置"><a href="#3-微信小程序直播设置" class="headerlink" title="3.微信小程序直播设置"></a>3.微信小程序直播设置</h2><p>参考文章：</p>
-<p><a href="https://developers.weixin.qq.com/miniprogram/dev/component/live-pusher.html" target="_blank" rel="noopener">推流：https://developers.weixin.qq.com/miniprogram/dev/component/live-pusher.html</a></p>
-<p><a href="https://developers.weixin.qq.com/miniprogram/dev/component/live-player.html" target="_blank" rel="noopener">播放：https://developers.weixin.qq.com/miniprogram/dev/component/live-player.html</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;live-pusher id=&quot;pusher&quot; </span><br><span class="line">   url=&quot;rtmp://192.168.31.94:1935/live/123&quot; </span><br><span class="line">   mode=&quot;FHD&quot; </span><br><span class="line">   autopush =&quot;false&quot;</span><br><span class="line">   bindstatechange=&quot;statechange&quot;</span><br><span class="line">   beauty = &quot;9&quot;</span><br><span class="line">   whiteness=&quot;5&quot;</span><br><span class="line">   min-bitrate=&quot;500&quot;</span><br><span class="line">   max-bitrate=&quot;1500&quot;</span><br><span class="line">   style=&quot;height: 225px;&quot;</span><br><span class="line">   /&gt;</span><br></pre></td></tr></table></figure>
-<p>这里讲解一下url这一项，rtmp表示协议和http意思一样，192.168.31.94是你nginx所在ip地址，1935是上面我们配置的rtmp的端口，live是上面我们配置的application live，123表示主播的房间号，播放端和推流端代码类似。</p>
-<p>直播测试网址：<a href="https://www.wowza.com/testplayers" target="_blank" rel="noopener">https://www.wowza.com/testplayers </a>可以测试推流是否成功</p>
-<p>下图是我的小程序直播效果图</p>
-<p><img src="../images/IMG_1CE770413642-1.jpeg" alt="IMG_1CE770413642-1"></p>
-<p><img src="../images/IMG_8B3AE5D8A914-1.jpeg" alt="IMG_8B3AE5D8A914-1"></p>
+            <h1 id="Java最佳实践（1）-创建对象"><a href="#Java最佳实践（1）-创建对象" class="headerlink" title="Java最佳实践（1）-创建对象"></a>Java最佳实践（1）-创建对象</h1><h2 id="使用静态工厂方法创建"><a href="#使用静态工厂方法创建" class="headerlink" title="使用静态工厂方法创建"></a>使用静态工厂方法创建</h2><ol>
+<li><p>from： 类型转换方法，它只有单个参数，返回该类型的一个相对应的实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Date d = Date.from(instant)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>of：聚合方法，带有多个参数，返回该类型的一个实例，把他们合并起来</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Rank&gt; faceCards=EnumSet.of(JACK, QUEEN, KING)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>valueOf：比from和of更繁琐的一种替代方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BigInteger prime=BigInteger.valueOf(Integer.MAX_VALUE)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>instance/getInstance：返回的实例是通过方法的参数来描述的，但是不能说与参数具有同样的值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StackWalk luke=StackWalker.getInstance(options)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>create/newInstance：像instance/getInstance一样，但create/newInstance能够确保每次调用都返回一个新的实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object newArray=Array.newInstance(classObject, arrayLen)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>getType：像getInstance一样，但是工厂方法处于不同的类中的时候使用。Type表示工厂方法所返回的对象类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileStore fs=Files.getFileStore(path)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>newType：像newInstance一样，但是在工厂方法处于不同的类中的时候使用。Type表示工厂方法所返回的对象类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BufferedReader br=Files.newBufferedReader(path)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>type：getType和newType的简版</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Complain&gt; litany=Conllections.list(legacyLitany)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="使用建造者（Builder）模式"><a href="#使用建造者（Builder）模式" class="headerlink" title="使用建造者（Builder）模式"></a>使用建造者（Builder）模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class User &#123;</span><br><span class="line">    private String username;</span><br><span class="line">    private String password;</span><br><span class="line">    private String phone;</span><br><span class="line">    private String country;</span><br><span class="line">    private String city;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有一个如下的User类，所有属性都是String。</p>
+<p>如果用构造器方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String username, String password, String phone, String country, String city)</span></span></span><br></pre></td></tr></table></figure>
+<p>因为全是String，调用方很有可能会传值错误，比如username传了password，password传了username，编译能通过，IDE也不会报错，但是运行时结果却是错的。</p>
+<p>如果用set方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">User user=<span class="keyword">new</span> User();</span><br><span class="line">user.setUsername(username);</span><br><span class="line">user.setUsername(password);</span><br><span class="line">user.setUsername(phone);</span><br><span class="line">user.setUsername(country);</span><br><span class="line">user.setUsername(city);</span><br></pre></td></tr></table></figure>
+<p>需要写一大堆set，可以避免错误，但是调用方写法不够优雅。</p>
+<p>下面使用建造者模式进行创建对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line">    <span class="keyword">private</span> String country;</span><br><span class="line">    <span class="keyword">private</span> String city;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String username;</span><br><span class="line">        <span class="keyword">private</span> String password;</span><br><span class="line">        <span class="keyword">private</span> String phone = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">private</span> String country = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">private</span> String city = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Builder</span><span class="params">(String username, String password)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.username = username;</span><br><span class="line">            <span class="keyword">this</span>.password = password;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">phone</span><span class="params">(String phone)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.phone = phone;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">country</span><span class="params">(String country)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.country = country;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">city</span><span class="params">(String city)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.city = city;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> User <span class="title">build</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> User(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">User</span><span class="params">(Builder builder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.username = builder.username;</span><br><span class="line">        <span class="keyword">this</span>.password = builder.password;</span><br><span class="line">        <span class="keyword">this</span>.phone = builder.phone;</span><br><span class="line">        <span class="keyword">this</span>.country = builder.country;</span><br><span class="line">        <span class="keyword">this</span>.city = builder.city;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用方写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User user=<span class="keyword">new</span> User.Builder(username,password)</span><br><span class="line">                .phone(phone)</span><br><span class="line">                .country(county)</span><br><span class="line">                .city(city)</span><br><span class="line">                .build();</span><br></pre></td></tr></table></figure>
+<p>链式调用写法更简洁更易读。</p>
+<h2 id="使用try-with-resources的写法"><a href="#使用try-with-resources的写法" class="headerlink" title="使用try-with-resources的写法"></a>使用try-with-resources的写法</h2><p>诸如InputString, BufferedReader之类实现了Closeable接口的类可以使用如下方式创建</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>(InputStream in = <span class="keyword">new</span> ByteArrayInputStream(str.getBytes()))&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 实现了Closeable对象的可以用try-with-resources的写法，</span></span><br><span class="line"><span class="comment">    * 将InputStream之类的写在try()中不需要再在finally中关闭</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不需要再写finally去关闭，显得更简洁易懂</p>
 
           
         
@@ -384,7 +411,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -434,7 +461,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -456,7 +483,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -574,8 +601,6 @@
   
 
 
-  
-
 
 
 
@@ -614,11 +639,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 

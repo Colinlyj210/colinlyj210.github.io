@@ -259,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2019/01/30/Java最佳实践（1）/">
+    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2019/04/20/umi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LYJ">
@@ -278,7 +278,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/30/Java最佳实践（1）/" itemprop="url">Java最佳实践（1）</a></h2>
+                <a class="post-title-link" href="/2019/04/20/umi/" itemprop="url">umi</a></h2>
         
 
         <div class="post-meta">
@@ -290,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-30T13:15:35+08:00">
-                2019-01-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-20T19:56:47+08:00">
+                2019-04-20
               </time>
             
 
@@ -330,48 +330,112 @@
       
         
           
-            <h1 id="Java最佳实践（1）-创建对象"><a href="#Java最佳实践（1）-创建对象" class="headerlink" title="Java最佳实践（1）-创建对象"></a>Java最佳实践（1）-创建对象</h1><h2 id="使用静态工厂方法创建"><a href="#使用静态工厂方法创建" class="headerlink" title="使用静态工厂方法创建"></a>使用静态工厂方法创建</h2><ol>
-<li><p>from： 类型转换方法，它只有单个参数，返回该类型的一个相对应的实例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Date d = Date.from(instant)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>of：聚合方法，带有多个参数，返回该类型的一个实例，把他们合并起来</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Rank&gt; faceCards=EnumSet.of(JACK, QUEEN, KING)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>valueOf：比from和of更繁琐的一种替代方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BigInteger prime=BigInteger.valueOf(Integer.MAX_VALUE)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>instance/getInstance：返回的实例是通过方法的参数来描述的，但是不能说与参数具有同样的值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StackWalk luke=StackWalker.getInstance(options)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>create/newInstance：像instance/getInstance一样，但create/newInstance能够确保每次调用都返回一个新的实例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object newArray=Array.newInstance(classObject, arrayLen)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>getType：像getInstance一样，但是工厂方法处于不同的类中的时候使用。Type表示工厂方法所返回的对象类型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileStore fs=Files.getFileStore(path)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>newType：像newInstance一样，但是在工厂方法处于不同的类中的时候使用。Type表示工厂方法所返回的对象类型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BufferedReader br=Files.newBufferedReader(path)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>type：getType和newType的简版</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Complain&gt; litany=Conllections.list(legacyLitany)</span><br></pre></td></tr></table></figure>
-</li>
+            <h1 id="umi"><a href="#umi" class="headerlink" title="umi"></a>umi</h1><h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1. 简单介绍"></a>1. <a href="https://umijs.org/zh/guide" target="_blank" rel="noopener">简单介绍</a></h2><h2 id="2-文件目录"><a href="#2-文件目录" class="headerlink" title="2. 文件目录"></a>2. 文件目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── dist/                     	// 默认的 build 输出目录</span><br><span class="line">├── mock/                     	// mock 文件所在目录</span><br><span class="line">├── public/						// 放置html所需的资源文件，例：icon</span><br><span class="line">├── config/</span><br><span class="line">    ├── config.js             	// umi 配置，同 .umirc.js，二选一</span><br><span class="line">└── src/                        // 源码目录</span><br><span class="line">    ├── layouts/index.js        // 全局布局layout</span><br><span class="line">    ├── models/					// dva的model</span><br><span class="line">    ├── pages/                  // 页面目录，里面的文件即路由</span><br><span class="line">        ├── .umi/               // dev 临时目录，需添加到 .gitignore</span><br><span class="line">        ├── .umi-production/    // build 临时目录，会自动删除</span><br><span class="line">        ├── document.ejs        // HTML 模板</span><br><span class="line">        ├── 404.js              // 404 页面</span><br><span class="line">        ├── hello.js            // 路由页面  /hello</span><br><span class="line">        ├── hello.test.js      	// 用例文件，umi test 会匹配所有 .test.js 和 .e2e.js 结尾的文件</span><br><span class="line">        ├── test/	</span><br><span class="line">        	├── _layout.js		// 该目录下的layout</span><br><span class="line">        	└── test.js			// 路由页面  /test/test</span><br><span class="line">    ├── global.css              // 约定的全局样式文件，自动引入，也可以用 global.less</span><br><span class="line">    ├── global.js               // 可以在这里加入 polyfill</span><br><span class="line">    ├── app.js                  // 运行时配置文件</span><br><span class="line">├── .umirc.js                  	// umi 配置，同 config/config.js，二选一</span><br><span class="line">├── .env                        // 环境变量</span><br><span class="line">├── .eslint.json                // eslint规则文件(ts)</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
+<p>layouts, pages, models 为固定写法，可在配置文件中关闭复数形式即为 layout, page, model  </p>
+<h2 id="3-配置文件-umirc-js"><a href="#3-配置文件-umirc-js" class="headerlink" title="3. 配置文件.umirc.js"></a>3. <a href="https://umijs.org/zh/config" target="_blank" rel="noopener">配置文件.umirc.js</a></h2><p><a href="https://umijs.org/zh/plugin/umi-plugin-react.html" target="_blank" rel="noopener">插件配置</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">        [&apos;umi-plugin-react&apos;, &#123;</span><br><span class="line">            title: &apos;赤兔名品 - 客服绩效管理系统&apos;,</span><br><span class="line">            antd: true,</span><br><span class="line">            dva: true,</span><br><span class="line">            dynamicImport: &#123;webpackChunkName: true, level: 2&#125;,</span><br><span class="line">            dll: false,</span><br><span class="line">            polyfills:[&apos;ie10&apos;],//不能去掉否则 IE10无法使用</span><br><span class="line">            routes: &#123;</span><br><span class="line">                exclude: [</span><br><span class="line">                    /models\//</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+<h2 id="4-约定式路由"><a href="#4-约定式路由" class="headerlink" title="4. 约定式路由"></a>4. 约定式路由</h2><h3 id="1-页面加载顺序"><a href="#1-页面加载顺序" class="headerlink" title="(1) 页面加载顺序"></a>(1) 页面加载顺序</h3><p>layouts/ -&gt; pages/ -&gt; _layout.js -&gt;test.js</p>
+<h3 id="2-页面路由"><a href="#2-页面路由" class="headerlink" title="(2) 页面路由"></a>(2) 页面路由</h3><p>pages文件夹相当于网站根路径，首页必须使用 index.js / index.ts，例如：pages/kpi/shopkpi.js =&gt; /kpi/shopkpi</p>
+<h2 id="5-按需加载"><a href="#5-按需加载" class="headerlink" title="5. 按需加载"></a>5. 按需加载</h2><p>(1) 按需加载组件</p>
+<p>通过 <code>umi/dynamic</code> 接口实现，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import dynamic from &apos;umi/dynamic&apos;;</span><br><span class="line"></span><br><span class="line">const delay = (timeout) =&gt; new Promise(resolve =&gt; setTimeout(resolve, timeout));</span><br><span class="line">const App = dynamic(&#123;</span><br><span class="line">  loader: async function() &#123;</span><br><span class="line">    await delay(1000);</span><br><span class="line">    return () =&gt; &lt;div&gt;I will render after 1s&lt;/div&gt;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>(2) 按需加载模块</p>
+<p>通过 <code>import()</code> 实现，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>(<span class="string">'g2'</span>).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// do something with g2</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>(3) 访问时按需加载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">        [&apos;umi-plugin-react&apos;, &#123;</span><br><span class="line">            title: &apos;赤兔名品 - 客服绩效管理系统&apos;,</span><br><span class="line">            antd: true,</span><br><span class="line">            dva: true,   // dva的使用</span><br><span class="line">            dynamicImport: &#123;webpackChunkName: true, level: 2&#125;,</span><br><span class="line">            dll: false,</span><br><span class="line">            polyfills:[&apos;ie10&apos;],//不能去掉否则 IE10无法使用</span><br><span class="line">            routes: &#123;</span><br><span class="line">                exclude: [</span><br><span class="line">                    /models\//</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+<h2 id="4-约定式路由-1"><a href="#4-约定式路由-1" class="headerlink" title="4. 约定式路由"></a>4. 约定式路由</h2><h3 id="1-页面加载顺序-1"><a href="#1-页面加载顺序-1" class="headerlink" title="(1) 页面加载顺序"></a>(1) 页面加载顺序</h3><p>layouts/ -&gt; pages/ -&gt; _layout.js -&gt;test.js</p>
+<h3 id="2-页面路由-1"><a href="#2-页面路由-1" class="headerlink" title="(2) 页面路由"></a>(2) 页面路由</h3><p>pages文件夹相当于网站根路径，首页必须使用 index.js / index.ts，例如：pages/kpi/shopkpi.js =&gt; /kpi/shopkpi</p>
+<h3 id="3-动态路由"><a href="#3-动态路由" class="headerlink" title="(3) 动态路由"></a>(3) 动态路由</h3><p><code>$type.jsx</code> 表示必须动态匹配</p>
+<p><code>$type$.jsx</code> 表示可选动态匹配</p>
+<p>如：匹配404，403，500 等</p>
+<p>动态匹配也可用与文件夹，如<code>$kpi/shop.jsx</code></p>
+<h2 id="5-按需加载-1"><a href="#5-按需加载-1" class="headerlink" title="5. 按需加载"></a>5. 按需加载</h2><h3 id="1-按需加载组件"><a href="#1-按需加载组件" class="headerlink" title="(1) 按需加载组件"></a>(1) 按需加载组件</h3><p>通过 <code>umi/dynamic</code> 接口实现，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import dynamic from &apos;umi/dynamic&apos;;</span><br><span class="line"></span><br><span class="line">// 延时 1s 渲染的组件。</span><br><span class="line">const App = dynamic(&#123;</span><br><span class="line">  loader: () =&gt; &#123;</span><br><span class="line">    return new Promise((resolve) =&gt; &#123;</span><br><span class="line">      setTimeout(() =&gt; &#123;</span><br><span class="line">        resolve(() =&gt; &lt;div&gt;I will render after 1s&lt;/div&gt;);</span><br><span class="line">      &#125;, /* 1s */1000);</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 或者用 async 语法</span><br><span class="line">const delay = (timeout) =&gt; new Promise(resolve =&gt; setTimeout(resolve, timeout));</span><br><span class="line">const App = dynamic(&#123;</span><br><span class="line">  loader: async function() &#123;</span><br><span class="line">    await delay(/* 1s */1000);</span><br><span class="line">    return () =&gt; &lt;div&gt;I will render after 1s&lt;/div&gt;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="2-按需加载模块"><a href="#2-按需加载模块" class="headerlink" title="(2) 按需加载模块"></a>(2) 按需加载模块</h3><p>通过 <code>import()</code> 实现，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import(&apos;g2&apos;).then(() =&gt; &#123;</span><br><span class="line">  // do something with g2</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="3-访问时按需加载"><a href="#3-访问时按需加载" class="headerlink" title="(3) 访问时按需加载"></a>(3) 访问时按需加载</h3><p>dynamicImport 实现路由级的动态加载（code splitting），可按需指定哪一级的按需加载。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dynamicImport: &#123;level: 2 &#125;</span><br></pre></td></tr></table></figure>
+<p>level 指定按需加载的路由等级, 这里表示两级路由的按需加载，即当访问该二级路由时其他的页面文件不会被加载进来。</p>
+<h2 id="6-运行时配置（app-js）"><a href="#6-运行时配置（app-js）" class="headerlink" title="6. 运行时配置（app.js）"></a>6. 运行时配置（app.js）</h2><h3 id="1-patchRoutes"><a href="#1-patchRoutes" class="headerlink" title="(1) patchRoutes"></a>(1) patchRoutes</h3><p>用于运行时修改路由。</p>
+<p>参数：</p>
+<ul>
+<li>routes: <code>Array</code>，路由配置</li>
+</ul>
+<p>e.g. 添加一个 <code>/foo</code> 的路由，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">patchRoutes</span>(<span class="params">routes</span>) </span>&#123;</span><br><span class="line">  routes[<span class="number">0</span>].unshift(&#123;</span><br><span class="line">    path: <span class="string">'/foo'</span>,</span><br><span class="line">    component: <span class="built_in">require</span>(<span class="string">'./routes/foo'</span>).default,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可能的场景：</p>
+<ul>
+<li>和 <code>render</code> 配合使用，请求服务端根据响应动态更新路由</li>
+<li>修改全部路由，加上某个前缀</li>
+<li>…</li>
+</ul>
+<p>注：</p>
+<ol>
+<li>同样适用约定式路由</li>
+<li>直接修改 <code>routes</code> 就好，不要返回新的路由对象</li>
 </ol>
-<h2 id="使用建造者（Builder）模式"><a href="#使用建造者（Builder）模式" class="headerlink" title="使用建造者（Builder）模式"></a>使用建造者（Builder）模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class User &#123;</span><br><span class="line">    private String username;</span><br><span class="line">    private String password;</span><br><span class="line">    private String phone;</span><br><span class="line">    private String country;</span><br><span class="line">    private String city;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>有一个如下的User类，所有属性都是String。</p>
-<p>如果用构造器方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String username, String password, String phone, String country, String city)</span></span></span><br></pre></td></tr></table></figure>
-<p>因为全是String，调用方很有可能会传值错误，比如username传了password，password传了username，编译能通过，IDE也不会报错，但是运行时结果却是错的。</p>
-<p>如果用set方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">User user=<span class="keyword">new</span> User();</span><br><span class="line">user.setUsername(username);</span><br><span class="line">user.setUsername(password);</span><br><span class="line">user.setUsername(phone);</span><br><span class="line">user.setUsername(country);</span><br><span class="line">user.setUsername(city);</span><br></pre></td></tr></table></figure>
-<p>需要写一大堆set，可以避免错误，但是调用方写法不够优雅。</p>
-<p>下面使用建造者模式进行创建对象：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line">    <span class="keyword">private</span> String country;</span><br><span class="line">    <span class="keyword">private</span> String city;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String username;</span><br><span class="line">        <span class="keyword">private</span> String password;</span><br><span class="line">        <span class="keyword">private</span> String phone = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">private</span> String country = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">private</span> String city = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Builder</span><span class="params">(String username, String password)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.username = username;</span><br><span class="line">            <span class="keyword">this</span>.password = password;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">phone</span><span class="params">(String phone)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.phone = phone;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">country</span><span class="params">(String country)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.country = country;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">city</span><span class="params">(String city)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.city = city;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> User <span class="title">build</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> User(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">User</span><span class="params">(Builder builder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.username = builder.username;</span><br><span class="line">        <span class="keyword">this</span>.password = builder.password;</span><br><span class="line">        <span class="keyword">this</span>.phone = builder.phone;</span><br><span class="line">        <span class="keyword">this</span>.country = builder.country;</span><br><span class="line">        <span class="keyword">this</span>.city = builder.city;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>调用方写法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User user=<span class="keyword">new</span> User.Builder(username,password)</span><br><span class="line">                .phone(phone)</span><br><span class="line">                .country(county)</span><br><span class="line">                .city(city)</span><br><span class="line">                .build();</span><br></pre></td></tr></table></figure>
-<p>链式调用写法更简洁更易读。</p>
-<h2 id="使用try-with-resources的写法"><a href="#使用try-with-resources的写法" class="headerlink" title="使用try-with-resources的写法"></a>使用try-with-resources的写法</h2><p>诸如InputString, BufferedReader之类实现了Closeable接口的类可以使用如下方式创建</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>(InputStream in = <span class="keyword">new</span> ByteArrayInputStream(str.getBytes()))&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 实现了Closeable对象的可以用try-with-resources的写法，</span></span><br><span class="line"><span class="comment">    * 将InputStream之类的写在try()中不需要再在finally中关闭</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不需要再写finally去关闭，显得更简洁易懂</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 用于运行时修改路由。(权限控制)</span><br><span class="line">export function patchRoutes(routes) &#123;</span><br><span class="line">    _.each(routes[0].routes, (r) =&gt; &#123;</span><br><span class="line">        // pages下的驼峰形式页面转为中划线形式</span><br><span class="line">        r.path = convertUrl(r.path);</span><br><span class="line">        let key = _.split(_.toLower(r.path), &apos;/&apos;)[1];</span><br><span class="line">        if (key &amp;&amp; !_.includes(noAuthRoutes, key)) &#123;</span><br><span class="line">            r.Routes = [Authorized];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们在这里进行了路由的转换，原来是 /kpi/shopKpi =&gt; kpi/shop-kpi，还有权限路由的控制 Authorized。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Authorized extends React.Component&lt;Props&gt; &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return hasAuth ? this.props.children : &lt;Redirect to=&quot;/&quot;/&gt;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Authorized;</span><br></pre></td></tr></table></figure>
+<p>防止用户直接输入没有权限的网址进行访问。页面加载顺序变成 Authorized =&gt; layouts =&gt;pages …</p>
+<h3 id="2-render"><a href="#2-render" class="headerlink" title="(2) render"></a>(2) render</h3><p>用于改写把整个应用 render 到 dom 树里的方法。</p>
+<p>参数：</p>
+<ul>
+<li>oldRender， <code>Function</code>，原始 render 方法，需至少被调用一次</li>
+</ul>
+<p>e.g. 延迟 1s 渲染应用，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">oldRender</span>) </span>&#123;</span><br><span class="line">  setTimeout(oldRender, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可能的场景：</p>
+<ol>
+<li>渲染应用之前做权限校验，不通过则跳转到登录页</li>
+</ol>
+<h3 id="3-onRouteChange"><a href="#3-onRouteChange" class="headerlink" title="(3) onRouteChange"></a>(3) onRouteChange</h3><p>用于在初始加载和路由切换时做一些事情。如：<strong>埋点统计，退出保存提示</strong></p>
+<p>参数：</p>
+<ul>
+<li>Object<ul>
+<li>location：<code>Object</code>, history 提供的 location 对象</li>
+<li>routes: <code>Array</code>, 路由配置</li>
+<li>action: <code>PUSH|POP|REPLACE|undefined</code>，初次加载时为 <code>undefined</code></li>
+</ul>
+</li>
+</ul>
+<p>e.g.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">onRouteChange</span>(<span class="params">&#123; location, routes, action &#125;</span>) </span>&#123;</span><br><span class="line">  bacon(location.pathname);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可能的场景：</p>
+<ol>
+<li>埋点统计</li>
+</ol>
+<p>注：</p>
+<ol>
+<li>初次加载时也会执行，但 action 为 <code>undefined</code></li>
+</ol>
+<h3 id="4-rootContainer"><a href="#4-rootContainer" class="headerlink" title="(4) rootContainer"></a>(4) rootContainer</h3><p>用于封装 root container，可以取一部分，或者外面套一层，等等。</p>
+<p>参数：</p>
+<ul>
+<li>container，<code>ReactComponent</code>，React 应用最上层的根组件</li>
+</ul>
+<p>e.g.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">rootContainer</span>(<span class="params">container</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> DvaContainer = <span class="built_in">require</span>(<span class="string">'@tmp/DvaContainer'</span>).default;</span><br><span class="line">  <span class="keyword">return</span> React.createElement(DvaContainer, <span class="literal">null</span>, container);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可能的场景：</p>
+<ol>
+<li>dva、intl 等需要在外层有个 Provider 的场景</li>
+</ol>
+<h3 id="5-modifyRouteProps"><a href="#5-modifyRouteProps" class="headerlink" title="(5) modifyRouteProps"></a>(5) modifyRouteProps</h3><p>修改传给路由组件的 props。</p>
+<p>参数：</p>
+<ul>
+<li>props，<code>Object</code>，原始 props</li>
+<li>Object<ul>
+<li>route，<code>Object</code>，当前路由配置</li>
+</ul>
+</li>
+</ul>
+<p>e.g.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">modifyRouteProps</span>(<span class="params">props, &#123; route &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; ...props, <span class="attr">foo</span>: <span class="string">'bar'</span> &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注：</p>
+<ol>
+<li>需返回新的 props</li>
+</ol>
 
           
         
@@ -411,7 +475,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -461,7 +525,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -483,7 +547,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -601,8 +665,6 @@
   
 
 
-  
-
 
 
 
@@ -641,11 +703,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 

@@ -259,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2018/05/28/MySQL开发规范/">
+    <link itemprop="mainEntityOfPage" href="https://www.lyj210.cn/2018/07/10/加密算法对比/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LYJ">
@@ -278,7 +278,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/28/MySQL开发规范/" itemprop="url">MySQL开发规范</a></h2>
+                <a class="post-title-link" href="/2018/07/10/加密算法对比/" itemprop="url">加密算法对比</a></h2>
         
 
         <div class="post-meta">
@@ -290,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T17:44:46+08:00">
-                2018-05-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T15:56:35+08:00">
+                2018-07-10
               </time>
             
 
@@ -330,108 +330,7 @@
       
         
           
-            <h1 id="MySQL开发规范"><a href="#MySQL开发规范" class="headerlink" title="MySQL开发规范"></a>MySQL开发规范</h1><h3 id="1-命名规范"><a href="#1-命名规范" class="headerlink" title="1.命名规范"></a>1.命名规范</h3><p>(1)库名、表名、字段名必须使用小写字母，并采用下划线分割。  </p>
-<p>(2)库名、表名、字段名尽量不用MySQL保留字。 </p>
-<p>  （常见的 date, day, month, year, year_month, hour_minute, hour_second, user, host, hosts, owner, names, type, view, begin, end, status, event, page ）。 </p>
-<h3 id="2-基础规范"><a href="#2-基础规范" class="headerlink" title="2.基础规范"></a>2.基础规范</h3><p>(1)使用InnoDB存储引擎。 </p>
-<p>(2)表字符集使用UTF8，必要时可使用UTF8MB4字符集。 </p>
-<p>(3)所有表都需要添加注释；不能见名知意的字段都需要增加注释。 </p>
-<h3 id="3-库表设计"><a href="#3-库表设计" class="headerlink" title="3.库表设计"></a>3.库表设计</h3><p>(1)将大字段、访问频率低的字段拆分到单独的表中存储，分离冷热数据。 </p>
-<h3 id="4-字段设计"><a href="#4-字段设计" class="headerlink" title="4.字段设计"></a>4.字段设计</h3><p>(1)建议使用UNSIGNED存储非负数值。</p>
-<p>(2)建议使用INT UNSIGNED存储IPV4。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT INET_NTOA(3520061480); </span><br><span class="line">SELECT INET_ATON(&apos;209.207.224.40&apos;);</span><br></pre></td></tr></table></figure>
-<p>(3)用DECIMAL代替FLOAT和DOUBLE存储精确浮点数，例如支付相关数据。 </p>
-<p>(4)INT类型固定占4字节存储，例如INT(4)仅代表显示字符宽度为4位，不代表存储长度，一般不用写显示宽度，不写保留默认的即可。 </p>
-<p>(5)区分使用TINYINT、SMALLINT、MEDIUMINT、INT、BIGINT数据类型。例如取值范围为0-80时，使用TINYINT。 </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">大小</th>
-<th style="text-align:left">范围（有符号）</th>
-<th style="text-align:left">范围（无符号）</th>
-<th style="text-align:left">用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">TINYINT</td>
-<td style="text-align:left">1 字节</td>
-<td style="text-align:left">(-128，127)</td>
-<td style="text-align:left">(0，255)</td>
-<td style="text-align:left">小整数值</td>
-</tr>
-<tr>
-<td style="text-align:left">SMALLINT</td>
-<td style="text-align:left">2 字节</td>
-<td style="text-align:left">(-32 768，32 767)</td>
-<td style="text-align:left">(0，65 535)</td>
-<td style="text-align:left">大整数值</td>
-</tr>
-<tr>
-<td style="text-align:left">MEDIUMINT</td>
-<td style="text-align:left">3 字节</td>
-<td style="text-align:left">(-8 388 608，8 388 607)</td>
-<td style="text-align:left">(0，16 777 215)</td>
-<td style="text-align:left">大整数值</td>
-</tr>
-<tr>
-<td style="text-align:left">INT或INTEGER</td>
-<td style="text-align:left">4 字节</td>
-<td style="text-align:left">(-2 147 483 648，2 147 483 647)</td>
-<td style="text-align:left">(0，4 294 967 295)</td>
-<td style="text-align:left">大整数值</td>
-</tr>
-<tr>
-<td style="text-align:left">BIGINT</td>
-<td style="text-align:left">8 字节</td>
-<td style="text-align:left">(-9 233 372 036 854 775 808，9 223 372 036 854 775 807)</td>
-<td style="text-align:left">(0，18 446 744 073 709 551 615)</td>
-<td style="text-align:left">极大整数值</td>
-</tr>
-</tbody>
-</table>
-<p>(6)建议使用TINYINT来代替ENUM, BIT类型。 </p>
-<p>(7)尽可能不使用TEXT、BLOB类型。 </p>
-<p>(8)使用VARBINARY存储大小写敏感的变长字符串或二进制内容。</p>
-<p>(9)使用尽可能小的VARCHAR字段。VARCHAR(N)中的N表示字符数而非字节数。  </p>
-<h3 id="5-索引规范"><a href="#5-索引规范" class="headerlink" title="5.索引规范"></a>5.索引规范</h3><p>(1) 索引名必须全部使用小写。 </p>
-<p>(2) 非唯一索引按照“idx<em>表名首字母简写</em>字段名首字母简写_字段名首字母简写…”进行命名，</p>
-<p>唯一索引按照“uniq<em>表名首字母简写</em>字段名首字母简写_字段名首字母简写…”进行命名，</p>
-<p>简写尽量不多于4个字符，表名简写尽量库内不重名即可，字段名简写尽量表内不重复即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">简写规则：</span><br><span class="line">* end_time 简写为et，以_分隔的单词，以各单词首字母简写。</span><br><span class="line">* action_type 简写为aty,  action_time 简写为ati， 简写有重名时，可再多加一两个字符，尽量保持简洁即可。</span><br><span class="line">* status 简写为sta，单词取前面3-4个不重复的字符。</span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line">order_info表：uniq_oi_cid_lmt (campaign_id, last_modify_time)</span><br><span class="line">trade表：idx_tra_uid_et_tid_sta (user_id, end_time, tid, status)</span><br></pre></td></tr></table></figure>
-<p>(3)表必须有主键，主键字段放首行，推荐使用自增列作为主键，当表可能较大时主键优先考虑使用bigint。 </p>
-<p>(4)禁止冗余和重复索引。 </p>
-<p>(5)尽量不使用外键，可以考虑代码实现。</p>
-<p>(6)关联表查询时，JOIN列的数据类型必须相同，并且要建立索引。 </p>
-<p>(7)组合索引中，应优先考虑分组和排序需求，在同等条件下，区分度大的字段放在最前。 </p>
-<p>(8)对字符串使用前缀索引，前缀索引长度不超过8个字符，但无法分组排序。 </p>
-<p>(9)不对过长的VARCHAR字段建立索引。建议优先考虑添加CRC32或MD5伪列，并对伪列建⽴索引。 </p>
-<p>(10)合理创建组合索引，(a，b，c) 相当于 (a) 、(a，b) 、(a，b，c)。 </p>
-<p>(11)合理使用覆盖索引减少IO，避免排序。 </p>
-<h3 id="6-SQL设计"><a href="#6-SQL设计" class="headerlink" title="6.SQL设计"></a>6.SQL设计</h3><p>(1)用IN代替OR。SQL语句中IN包含的值不应过多，尽量少于1000个。 </p>
-<p>(2)禁止隐式转换。数值类型禁止加引号；字符串类型必须加引号。 </p>
-<p>(3)子查询性能差时可以尝试用JOIN代替。 </p>
-<p>(4)避免在MySQL条件字段中进行数学运算和函数运算。 </p>
-<p>(5)减少与数据库交互次数，尽量采用批量SQL语句。</p>
-<pre><code>a) INSERT ... ON DUPLICATE KEY UPDATE 
-b) REPLACE INTO 
-c) INSERT IGNORE 
-d) INSERT INTO VALUES(),()... 
-</code></pre><p>(6)对同一个表的多次alter操作必须合并为一次操作。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`trade`</span></span><br><span class="line">  <span class="keyword">ADD</span> <span class="keyword">KEY</span> <span class="string">`idx_trade_buyer`</span> (<span class="string">`buyer_nick`</span>),</span><br><span class="line">  <span class="keyword">ADD</span> <span class="keyword">KEY</span> <span class="string">`idx_trade_uid_created`</span> (<span class="string">`user_id`</span>,<span class="string">`created`</span>),</span><br><span class="line">  <span class="keyword">DROP</span> <span class="keyword">KEY</span> <span class="string">`idx_trade_uid_ptime_created`</span>;</span><br></pre></td></tr></table></figure>
-<p>(7)拆分复杂SQL为多个小SQL，避免大事务。</p>
-<p>(8)用UNION ALL代替UNION，UNION去重，UNION ALL不去重。 </p>
-<p>(9)统计行数用COUNT(*)或COUNT(1)。 </p>
-<p>(10)INSERT语句必须指定字段列表，禁止使用 INSERT INTO TABLE VALUES(1, …)，必须使用INSERT INTO TABLE(a, …) VALUES(1, …)。 </p>
-<p>(11)禁止单条SQL语句同时更新多个表。</p>
-<p>(12)使用%前导查询无法使用索引，例如：like “%abc”，大结果集不用，小结果集可以使用。</p>
-<p>(13)使用EXPLAIN判断SQL语句是否合理使用索引，尽量避免extra列出现：Using File Sort、Using Temporary。</p>
-<p>(14)如果不需要排序，应该去掉order by。</p>
-<h3 id="7-行为规范"><a href="#7-行为规范" class="headerlink" title="7.行为规范"></a>7.行为规范</h3><p>(1)表结构变更需要通知DBA进行审核。</p>
-<p>(2)提交线上建表改表需求，尽可能详细注明涉及到的所有SQL语句（包括INSERT、DELETE、UPDATE），便于DBA进⾏审核和优化。 </p>
-<p>(3)查询结果集较大时需要加上limit, 避免把sgw带宽占满影响其他人访问。</p>
-<p>(4)客户端运行的sql被取消或者停止后，还需要再执行show processlist，如果还在运行，则kill掉该sql。</p>
+            <h1 id="加密算法对比"><a href="#加密算法对比" class="headerlink" title="加密算法对比"></a>加密算法对比</h1><h2 id="1-Base64编码"><a href="#1-Base64编码" class="headerlink" title="1. Base64编码"></a>1. Base64编码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">encodeBase64</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    String code = Base64.getEncoder().encodeToString(str.getBytes());</span><br><span class="line">    System.out.println(str + <span class="string">" -&gt; "</span> + code);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// hello -&gt; aGVsbG8=</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">decodeBase64</span><span class="params">(String code)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">byte</span>[] str = Base64.getDecoder().decode(code.getBytes());</span><br><span class="line">    System.out.println(code + <span class="string">" -&gt; "</span> + <span class="keyword">new</span> String(str));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//aGVsbG8= -&gt; hello</span></span><br></pre></td></tr></table></figure>
 
           
         
@@ -471,7 +370,7 @@ d) INSERT INTO VALUES(),()...
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -521,7 +420,7 @@ d) INSERT INTO VALUES(),()...
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -543,7 +442,7 @@ d) INSERT INTO VALUES(),()...
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -661,8 +560,6 @@ d) INSERT INTO VALUES(),()...
   
 
 
-  
-
 
 
 
@@ -701,11 +598,6 @@ d) INSERT INTO VALUES(),()...
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
